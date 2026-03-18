@@ -65,31 +65,131 @@ export default function ServicesPage() {
         }
     ]
 
+    // Responsive styles object
+    const styles = {
+        heroSection: {
+            padding: '120px 20px 60px',
+            background: `linear-gradient(135deg, ${green1}, #0a251a)`,
+            color: 'white'
+        },
+        heroTitle: {
+            fontSize: 'clamp(32px, 8vw, 52px)',
+            fontWeight: '700',
+            marginBottom: '20px',
+            lineHeight: '1.2'
+        },
+        heroDescription: {
+            fontSize: 'clamp(16px, 4vw, 18px)',
+            opacity: 0.9,
+            maxWidth: '700px',
+            margin: '0 auto',
+            padding: '0 15px'
+        },
+        servicesSection: {
+            padding: 'clamp(40px, 8vw, 80px) clamp(20px, 5vw, 50px)'
+        },
+        servicesGrid: {
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: 'clamp(15px, 3vw, 30px)',
+            maxWidth: '1400px',
+            margin: '0 auto'
+        },
+        serviceCard: {
+            backgroundColor: '#f8f8f8',
+            padding: 'clamp(25px, 5vw, 40px)',
+            borderRadius: '12px',
+            border: `1px solid ${green2}`,
+            transition: 'all 0.3s ease',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column' as const
+        },
+        serviceIcon: {
+            fontSize: 'clamp(40px, 6vw, 48px)',
+            marginBottom: '20px'
+        },
+        serviceTitle: {
+            fontSize: 'clamp(20px, 4vw, 24px)',
+            color: green1,
+            marginBottom: '15px'
+        },
+        serviceDesc: {
+            color: '#666',
+            lineHeight: '1.6',
+            marginBottom: '20px',
+            fontSize: 'clamp(14px, 3vw, 16px)'
+        },
+        featureTitle: {
+            fontSize: 'clamp(14px, 3vw, 16px)',
+            color: green1,
+            marginBottom: '10px'
+        },
+        featureList: {
+            listStyle: 'none',
+            padding: 0,
+            margin: 0
+        },
+        featureItem: {
+            color: '#666',
+            marginBottom: '8px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            fontSize: 'clamp(13px, 2.5vw, 14px)'
+        },
+        ctaSection: {
+            padding: 'clamp(40px, 8vw, 80px) clamp(20px, 5vw, 50px)',
+            backgroundColor: '#f0f7f3',
+            textAlign: 'center' as const
+        },
+        ctaTitle: {
+            fontSize: 'clamp(24px, 6vw, 36px)',
+            color: green1,
+            marginBottom: '20px'
+        },
+        ctaText: {
+            color: '#666',
+            marginBottom: '30px',
+            fontSize: 'clamp(14px, 3vw, 16px)',
+            padding: '0 15px'
+        },
+        ctaButton: {
+            background: green1,
+            color: 'white',
+            border: 'none',
+            padding: 'clamp(12px, 3vw, 15px) clamp(30px, 6vw, 40px)',
+            fontSize: 'clamp(14px, 3vw, 16px)',
+            fontWeight: '600',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            width: 'fit-content',
+            margin: '0 auto'
+        }
+    }
+
     return (
         <div style={{
             fontFamily: 'Inter, sans-serif',
             margin: 0,
             padding: 0,
-            backgroundColor: 'white'
+            backgroundColor: 'white',
+            overflowX: 'hidden'
         }}>
             <Navbar />
 
             {/* Hero Section */}
-            <section style={{
-                padding: '150px 50px 80px',
-                background: `linear-gradient(135deg, ${green1}, #0a251a)`,
-                color: 'white'
-            }}>
+            <section style={styles.heroSection}>
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}
                 >
-                    <h1 style={{ fontSize: '52px', fontWeight: '700', marginBottom: '20px' }}>
+                    <h1 style={styles.heroTitle}>
                         OUR <span style={{ color: green2 }}>SERVICES</span>
                     </h1>
-                    <p style={{ fontSize: '18px', opacity: 0.9, maxWidth: '700px', margin: '0 auto' }}>
+                    <p style={styles.heroDescription}>
                         Comprehensive security solutions tailored to meet your specific needs.
                         Each service is delivered by highly trained professionals.
                     </p>
@@ -97,85 +197,55 @@ export default function ServicesPage() {
             </section>
 
             {/* Services Grid */}
-            <section style={{ padding: '80px 50px' }}>
-                <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-                        gap: '30px'
-                    }}>
-                        {services.map((service, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.05 }}
-                                viewport={{ once: true }}
-                                whileHover={{ y: -5 }}
-                                style={{
-                                    backgroundColor: '#f8f8f8',
-                                    padding: '40px',
-                                    borderRadius: '12px',
-                                    border: `1px solid ${green2}`,
-                                    transition: 'all 0.3s ease'
-                                }}
-                            >
-                                <div style={{ fontSize: '48px', marginBottom: '20px' }}>{service.icon}</div>
-                                <h3 style={{ fontSize: '24px', color: green1, marginBottom: '15px' }}>{service.title}</h3>
-                                <p style={{ color: '#666', lineHeight: '1.6', marginBottom: '20px' }}>{service.desc}</p>
+            <section style={styles.servicesSection}>
+                <div style={styles.servicesGrid}>
+                    {services.map((service, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.05 }}
+                            viewport={{ once: true }}
+                            whileHover={{ y: -5 }}
+                            style={styles.serviceCard}
+                        >
+                            <div style={styles.serviceIcon}>{service.icon}</div>
+                            <h3 style={styles.serviceTitle}>{service.title}</h3>
+                            <p style={styles.serviceDesc}>{service.desc}</p>
 
-                                <h4 style={{ fontSize: '16px', color: green1, marginBottom: '10px' }}>KEY FEATURES:</h4>
-                                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                                    {service.features.map((feature, i) => (
-                                        <li key={i} style={{
-                                            color: '#666',
-                                            marginBottom: '8px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '8px'
-                                        }}>
-                                            <span style={{ color: 'green' }}>✓</span> {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </motion.div>
-                        ))}
-                    </div>
+                            <h4 style={styles.featureTitle}>KEY FEATURES:</h4>
+                            <ul style={styles.featureList}>
+                                {service.features.map((feature, i) => (
+                                    <li key={i} style={styles.featureItem}>
+                                        <span style={{ color: 'green', flexShrink: 0 }}>✓</span>
+                                        <span>{feature}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                    ))}
                 </div>
             </section>
 
             {/* CTA Section */}
-            <section style={{
-                padding: '80px 50px',
-                backgroundColor: '#f0f7f3',
-                textAlign: 'center'
-            }}>
+            <section style={styles.ctaSection}>
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     style={{ maxWidth: '700px', margin: '0 auto' }}
                 >
-                    <h2 style={{ fontSize: '36px', color: green1, marginBottom: '20px' }}>
+                    <h2 style={styles.ctaTitle}>
                         Need a Custom Solution?
                     </h2>
-                    <p style={{ color: '#666', marginBottom: '30px' }}>
+                    <p style={styles.ctaText}>
                         We can create a tailored security package for your specific requirements.
                     </p>
-                    <Link href="/contact">
+                    <Link href="/contact" style={{ textDecoration: 'none', display: 'inline-block' }}>
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            style={{
-                                background: green1,
-                                color: 'white',
-                                border: 'none',
-                                padding: '15px 40px',
-                                fontSize: '16px',
-                                fontWeight: '600',
-                                borderRadius: '4px',
-                                cursor: 'pointer'
-                            }}
+                            style={styles.ctaButton}
                         >
                             CONTACT US
                         </motion.button>

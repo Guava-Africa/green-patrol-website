@@ -1,24 +1,36 @@
 'use client'
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export default function AboutPage() {
+    const [isMobile, setIsMobile] = useState(false)
     const green1 = '#0f4d36'
     const green2 = '#c8e6d4'
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768)
+        }
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+        return () => window.removeEventListener('resize', checkMobile)
+    }, [])
 
     return (
         <div style={{
             fontFamily: 'Inter, sans-serif',
             margin: 0,
             padding: 0,
-            backgroundColor: 'white'
+            backgroundColor: 'white',
+            overflowX: 'hidden'
         }}>
             <Navbar />
 
             {/* Hero Section */}
             <section style={{
-                padding: '150px 50px 80px',
+                padding: isMobile ? '100px 20px 60px' : '150px 50px 80px',
                 background: `linear-gradient(135deg, ${green1}, #0a251a)`,
                 color: 'white'
             }}>
@@ -28,31 +40,51 @@ export default function AboutPage() {
                     transition={{ duration: 0.8 }}
                     style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}
                 >
-                    <h1 style={{ fontSize: '52px', fontWeight: '700', marginBottom: '20px' }}>
+                    <h1 style={{
+                        fontSize: isMobile ? '36px' : '52px',
+                        fontWeight: '700',
+                        marginBottom: '20px',
+                        lineHeight: '1.2'
+                    }}>
                         ABOUT <span style={{ color: green2 }}>GREEN PATROL</span>
                     </h1>
-                    <p style={{ fontSize: '18px', opacity: 0.9, maxWidth: '700px', margin: '0 auto' }}>
+                    <p style={{
+                        fontSize: isMobile ? '16px' : '18px',
+                        opacity: 0.9,
+                        maxWidth: '700px',
+                        margin: '0 auto',
+                        padding: isMobile ? '0 10px' : '0'
+                    }}>
                         Your trusted partner in security, committed to excellence and innovation
                     </p>
                 </motion.div>
             </section>
 
             {/* Company Overview */}
-            <section style={{ padding: '80px 50px 40px' }}>
+            <section style={{
+                padding: isMobile ? '60px 20px 30px' : '80px 50px 40px'
+            }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        style={{ textAlign: 'center', marginBottom: '60px' }}
+                        style={{ textAlign: 'center', marginBottom: isMobile ? '40px' : '60px' }}
                     >
-                        <h2 style={{ fontSize: '36px', color: green1, marginBottom: '20px' }}>WHO WE ARE</h2>
+                        <h2 style={{
+                            fontSize: isMobile ? '28px' : '36px',
+                            color: green1,
+                            marginBottom: '20px'
+                        }}>
+                            WHO WE ARE
+                        </h2>
                         <p style={{
                             color: '#666',
                             lineHeight: '1.8',
                             maxWidth: '900px',
                             margin: '0 auto',
-                            fontSize: '16px'
+                            fontSize: isMobile ? '15px' : '16px',
+                            padding: isMobile ? '0 10px' : '0'
                         }}>
                             Green Patrol is a dynamic, customer-responsive security company dedicated to
                             excellence in every aspect of our service. From meticulous recruitment and
@@ -67,7 +99,9 @@ export default function AboutPage() {
             </section>
 
             {/* Our Values - Point Form */}
-            <section style={{ padding: '0 50px 60px' }}>
+            <section style={{
+                padding: isMobile ? '0 20px 40px' : '0 50px 60px'
+            }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -75,13 +109,13 @@ export default function AboutPage() {
                         viewport={{ once: true }}
                         style={{
                             backgroundColor: '#f8f8f8',
-                            padding: '40px',
+                            padding: isMobile ? '30px 20px' : '40px',
                             borderRadius: '12px',
                             border: `1px solid ${green2}`
                         }}
                     >
                         <h2 style={{
-                            fontSize: '32px',
+                            fontSize: isMobile ? '28px' : '32px',
                             color: green1,
                             marginBottom: '30px',
                             textAlign: 'center',
@@ -93,8 +127,8 @@ export default function AboutPage() {
 
                         <div style={{
                             display: 'grid',
-                            gridTemplateColumns: 'repeat(2, 1fr)',
-                            gap: '25px'
+                            gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+                            gap: isMobile ? '15px' : '25px'
                         }}>
                             {[
                                 {
@@ -124,7 +158,7 @@ export default function AboutPage() {
                                         display: 'flex',
                                         gap: '15px',
                                         alignItems: 'flex-start',
-                                        padding: '20px',
+                                        padding: isMobile ? '15px' : '20px',
                                         backgroundColor: 'white',
                                         borderRadius: '8px',
                                         boxShadow: '0 2px 10px rgba(0,0,0,0.03)'
@@ -138,7 +172,7 @@ export default function AboutPage() {
                                     }}>•</span>
                                     <div>
                                         <h3 style={{
-                                            fontSize: '18px',
+                                            fontSize: isMobile ? '17px' : '18px',
                                             color: green1,
                                             marginBottom: '8px',
                                             fontWeight: '700'
@@ -148,7 +182,7 @@ export default function AboutPage() {
                                         <p style={{
                                             color: '#666',
                                             lineHeight: '1.6',
-                                            fontSize: '14px',
+                                            fontSize: isMobile ? '14px' : '14px',
                                             margin: 0
                                         }}>
                                             {value.desc}
@@ -162,12 +196,15 @@ export default function AboutPage() {
             </section>
 
             {/* Mission & Vision */}
-            <section style={{ padding: '60px 50px', backgroundColor: '#f0f7f3' }}>
+            <section style={{
+                padding: isMobile ? '40px 20px' : '60px 50px',
+                backgroundColor: '#f0f7f3'
+            }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
                     <div style={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(2, 1fr)',
-                        gap: '30px'
+                        gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+                        gap: isMobile ? '20px' : '30px'
                     }}>
                         {[
                             {
@@ -199,15 +236,28 @@ export default function AboutPage() {
                                 viewport={{ once: true }}
                                 style={{
                                     backgroundColor: 'white',
-                                    padding: '40px',
+                                    padding: isMobile ? '30px 20px' : '40px',
                                     borderRadius: '12px',
                                     textAlign: 'center',
                                     boxShadow: '0 4px 20px rgba(0,0,0,0.05)'
                                 }}
                             >
-                                <div style={{ fontSize: '48px', marginBottom: '20px' }}>{item.icon}</div>
-                                <h3 style={{ fontSize: '24px', color: green1, marginBottom: '15px' }}>{item.title}</h3>
-                                <p style={{ color: '#666', lineHeight: '1.8' }}>{item.content}</p>
+                                <div style={{ fontSize: isMobile ? '40px' : '48px', marginBottom: '20px' }}>{item.icon}</div>
+                                <h3 style={{
+                                    fontSize: isMobile ? '22px' : '24px',
+                                    color: green1,
+                                    marginBottom: '15px'
+                                }}>
+                                    {item.title}
+                                </h3>
+                                <p style={{
+                                    color: '#666',
+                                    lineHeight: '1.8',
+                                    fontSize: isMobile ? '15px' : '16px',
+                                    padding: isMobile ? '0 10px' : '0'
+                                }}>
+                                    {item.content}
+                                </p>
                             </motion.div>
                         ))}
                     </div>
@@ -215,21 +265,29 @@ export default function AboutPage() {
             </section>
 
             {/* Why Choose Us */}
-            <section style={{ padding: '80px 50px' }}>
+            <section style={{
+                padding: isMobile ? '60px 20px' : '80px 50px'
+            }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        style={{ textAlign: 'center', marginBottom: '60px' }}
+                        style={{ textAlign: 'center', marginBottom: isMobile ? '40px' : '60px' }}
                     >
-                        <h2 style={{ fontSize: '36px', color: green1, marginBottom: '20px' }}>WHY CHOOSE US</h2>
+                        <h2 style={{
+                            fontSize: isMobile ? '28px' : '36px',
+                            color: green1,
+                            marginBottom: '20px'
+                        }}>
+                            WHY CHOOSE US
+                        </h2>
                     </motion.div>
 
                     <div style={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(2, 1fr)',
-                        gap: '40px'
+                        gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+                        gap: isMobile ? '30px' : '40px'
                     }}>
                         {[
                             {
@@ -257,26 +315,41 @@ export default function AboutPage() {
                                 viewport={{ once: true }}
                                 style={{
                                     display: 'flex',
-                                    gap: '20px',
-                                    alignItems: 'flex-start'
+                                    gap: isMobile ? '15px' : '20px',
+                                    alignItems: 'flex-start',
+                                    flexDirection: isMobile ? 'column' : 'row',
+                                    textAlign: isMobile ? 'center' : 'left'
                                 }}
                             >
                                 <div style={{
-                                    width: '50px',
-                                    height: '50px',
+                                    width: isMobile ? '40px' : '50px',
+                                    height: isMobile ? '40px' : '50px',
                                     borderRadius: '10px',
                                     backgroundColor: green2,
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    fontSize: '24px',
-                                    color: green1
+                                    fontSize: isMobile ? '20px' : '24px',
+                                    color: green1,
+                                    margin: isMobile ? '0 auto 10px' : '0'
                                 }}>
                                     ✓
                                 </div>
                                 <div>
-                                    <h3 style={{ fontSize: '20px', color: green1, marginBottom: '10px' }}>{item.title}</h3>
-                                    <p style={{ color: '#666', lineHeight: '1.6' }}>{item.desc}</p>
+                                    <h3 style={{
+                                        fontSize: isMobile ? '18px' : '20px',
+                                        color: green1,
+                                        marginBottom: '10px'
+                                    }}>
+                                        {item.title}
+                                    </h3>
+                                    <p style={{
+                                        color: '#666',
+                                        lineHeight: '1.6',
+                                        fontSize: isMobile ? '15px' : '16px'
+                                    }}>
+                                        {item.desc}
+                                    </p>
                                 </div>
                             </motion.div>
                         ))}

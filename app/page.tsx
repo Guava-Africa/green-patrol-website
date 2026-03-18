@@ -8,6 +8,213 @@ export default function Home() {
   const green1 = '#0f4d36'
   const green2 = '#c8e6d4'
 
+  // Add responsive styles for mobile
+  const styles = {
+    // Hero section mobile adjustments
+    heroSection: {
+      height: '100vh',
+      background: `radial-gradient(circle at 30% 50%, ${green1}, #0a251a)`,
+      position: 'relative' as const,
+      overflow: 'hidden'
+    },
+    heroContent: {
+      position: 'absolute' as const,
+      left: '10%',
+      top: '25%',
+      transform: 'translateY(-50%)',
+      color: 'white',
+      maxWidth: '600px',
+      zIndex: 3,
+      // Mobile adjustments
+      '@media (max-width: 768px)': {
+        left: '5%',
+        right: '5%',
+        top: '20%',
+        maxWidth: '90%'
+      }
+    },
+    heroTitle: {
+      fontSize: '72px',
+      fontWeight: '700',
+      lineHeight: '1.1',
+      marginBottom: '12px',
+      textShadow: '0 10px 30px rgba(0,0,0,0.3)',
+      // Mobile adjustments
+      '@media (max-width: 768px)': {
+        fontSize: '42px'
+      }
+    },
+    heroSubtitle: {
+      fontSize: '18px',
+      marginBottom: '40px',
+      lineHeight: '1.8',
+      maxWidth: '500px',
+      // Mobile adjustments
+      '@media (max-width: 768px)': {
+        fontSize: '16px',
+        marginBottom: '30px'
+      }
+    },
+    // Orbs positioning for mobile
+    orbContainer: {
+      position: 'absolute' as const,
+      right: '5%',
+      top: '10%',
+      width: '600px',
+      height: '600px',
+      zIndex: 2,
+      // Hide orbs on mobile for better performance and cleaner look
+      '@media (max-width: 768px)': {
+        opacity: 0.3,
+        right: '-100px',
+        top: '0',
+        width: '400px',
+        height: '400px'
+      }
+    },
+    // Services section mobile adjustments
+    servicesSection: {
+      padding: '100px 50px',
+      backgroundColor: 'white',
+      '@media (max-width: 768px)': {
+        padding: '60px 20px'
+      }
+    },
+    servicesTitle: {
+      fontSize: '48px',
+      fontWeight: '700',
+      color: '#1a1a1a',
+      marginBottom: '20px',
+      '@media (max-width: 768px)': {
+        fontSize: '36px'
+      }
+    },
+    servicesGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: '30px',
+      '@media (max-width: 768px)': {
+        gridTemplateColumns: '1fr',
+        gap: '20px'
+      }
+    },
+    serviceCard: {
+      backgroundColor: '#f8f8f8',
+      padding: '40px 30px',
+      borderRadius: '12px',
+      textAlign: 'center' as const,
+      cursor: 'pointer',
+      border: `1px solid ${green2}`,
+      transition: 'all 0.3s ease',
+      '@media (max-width: 768px)': {
+        padding: '30px 20px'
+      }
+    },
+    // Modern security section mobile adjustments
+    modernSecuritySection: {
+      padding: '100px 50px',
+      backgroundColor: '#f0f7f3',
+      '@media (max-width: 768px)': {
+        padding: '60px 20px'
+      }
+    },
+    modernSecurityGrid: {
+      maxWidth: '1200px',
+      margin: '0 auto',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: '60px',
+      alignItems: 'center',
+      '@media (max-width: 768px)': {
+        gridTemplateColumns: '1fr',
+        gap: '30px'
+      }
+    },
+    modernSecurityTitle: {
+      fontSize: '42px',
+      fontWeight: '700',
+      color: '#1a1a1a',
+      marginBottom: '30px',
+      lineHeight: '1.2',
+      '@media (max-width: 768px)': {
+        fontSize: '32px'
+      }
+    },
+    // Manager section mobile adjustments
+    managerSection: {
+      padding: '100px 20px',
+      backgroundColor: 'white',
+      '@media (max-width: 768px)': {
+        padding: '60px 15px'
+      }
+    },
+    managerGrid: {
+      maxWidth: '1100px',
+      margin: '0 auto',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+      gap: '50px',
+      alignItems: 'center',
+      '@media (max-width: 768px)': {
+        gridTemplateColumns: '1fr',
+        gap: '30px'
+      }
+    },
+    managerImage: {
+      height: '300px',
+      borderRadius: '20px',
+      background: `linear-gradient(135deg, ${green1}, ${green2})`,
+      '@media (max-width: 768px)': {
+        height: '200px'
+      }
+    },
+    // CTA section mobile adjustments
+    ctaSection: {
+      padding: '100px 50px',
+      background: `linear-gradient(135deg, ${green1}, #0a251a)`,
+      color: 'white',
+      textAlign: 'center' as const,
+      '@media (max-width: 768px)': {
+        padding: '60px 20px'
+      }
+    },
+    ctaTitle: {
+      fontSize: '48px',
+      fontWeight: '700',
+      marginBottom: '30px',
+      '@media (max-width: 768px)': {
+        fontSize: '32px',
+        marginBottom: '20px'
+      }
+    },
+    ctaText: {
+      fontSize: '18px',
+      opacity: 0.9,
+      marginBottom: '40px',
+      lineHeight: '1.8',
+      '@media (max-width: 768px)': {
+        fontSize: '16px',
+        marginBottom: '30px'
+      }
+    },
+    ctaButton: {
+      background: green2,
+      color: green1,
+      border: 'none',
+      padding: '18px 50px',
+      fontSize: '18px',
+      fontWeight: '700',
+      borderRadius: '4px',
+      cursor: 'pointer',
+      '@media (max-width: 768px)': {
+        padding: '15px 40px',
+        fontSize: '16px',
+        width: '100%',
+        maxWidth: '300px'
+      }
+    }
+  }
+
   return (
     <div style={{
       fontFamily: 'Inter, sans-serif',
@@ -18,21 +225,9 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section style={{
-        height: '100vh',
-        background: `radial-gradient(circle at 30% 50%, ${green1}, #0a251a)`,
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
+      <section style={styles.heroSection}>
         {/* Animated gradient orbs */}
-        <div style={{
-          position: 'absolute',
-          right: '5%',
-          top: '10%',
-          width: '600px',
-          height: '600px',
-          zIndex: 2
-        }}>
+        <div style={styles.orbContainer}>
           {/* Large orb */}
           <motion.div
             animate={{
@@ -144,7 +339,14 @@ export default function Home() {
             transform: 'translateY(-50%)',
             color: 'white',
             maxWidth: '600px',
-            zIndex: 3
+            zIndex: 3,
+            // Mobile inline styles
+            ...(window.innerWidth <= 768 ? {
+              left: '5%',
+              right: '5%',
+              top: '20%',
+              maxWidth: '90%'
+            } : {})
           }}
         >
           <motion.span
@@ -166,7 +368,7 @@ export default function Home() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
             style={{
-              fontSize: '72px',
+              fontSize: window.innerWidth <= 768 ? '42px' : '72px',
               fontWeight: '700',
               lineHeight: '1.1',
               marginBottom: '12px',
@@ -181,8 +383,8 @@ export default function Home() {
             animate={{ y: 0, opacity: 0.9 }}
             transition={{ delay: 0.5 }}
             style={{
-              fontSize: '18px',
-              marginBottom: '40px',
+              fontSize: window.innerWidth <= 768 ? '16px' : '18px',
+              marginBottom: window.innerWidth <= 768 ? '30px' : '40px',
               lineHeight: '1.8',
               maxWidth: '500px'
             }}
@@ -195,7 +397,7 @@ export default function Home() {
 
       {/* Services Preview Section */}
       <section style={{
-        padding: '100px 50px',
+        padding: window.innerWidth <= 768 ? '60px 20px' : '100px 50px',
         backgroundColor: 'white'
       }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
@@ -207,7 +409,7 @@ export default function Home() {
             style={{ textAlign: 'center', marginBottom: '60px' }}
           >
             <h2 style={{
-              fontSize: '48px',
+              fontSize: window.innerWidth <= 768 ? '36px' : '48px',
               fontWeight: '700',
               color: '#1a1a1a',
               marginBottom: '20px'
@@ -221,8 +423,8 @@ export default function Home() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '30px'
+            gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : 'repeat(3, 1fr)',
+            gap: window.innerWidth <= 768 ? '20px' : '30px'
           }}>
             {[
               { title: 'Static Guards', desc: 'Professional on-site security personnel for constant vigilance at your location', icon: '🛡️' },
@@ -241,7 +443,7 @@ export default function Home() {
                 whileHover={{ y: -10 }}
                 style={{
                   backgroundColor: '#f8f8f8',
-                  padding: '40px 30px',
+                  padding: window.innerWidth <= 768 ? '30px 20px' : '40px 30px',
                   borderRadius: '12px',
                   textAlign: 'center',
                   cursor: 'pointer',
@@ -258,17 +460,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Modern Security Section - RESTORED */}
+      {/* Modern Security Section */}
       <section style={{
-        padding: '100px 50px',
+        padding: window.innerWidth <= 768 ? '60px 20px' : '100px 50px',
         backgroundColor: '#f0f7f3'
       }}>
         <div style={{
           maxWidth: '1200px',
           margin: '0 auto',
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '60px',
+          gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr 1fr',
+          gap: window.innerWidth <= 768 ? '30px' : '60px',
           alignItems: 'center'
         }}>
           <motion.div
@@ -278,7 +480,7 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <h2 style={{
-              fontSize: '42px',
+              fontSize: window.innerWidth <= 768 ? '32px' : '42px',
               fontWeight: '700',
               color: '#1a1a1a',
               marginBottom: '30px',
@@ -296,16 +498,6 @@ export default function Home() {
               We combine traditional protection values with cutting-edge technology to
               deliver unparalleled safety solutions.
             </p>
-
-            {/* <p style={{
-              fontSize: '16px',
-              color: '#555',
-              lineHeight: '1.8',
-              marginBottom: '35px'
-            }}>
-              In just one year, we've assembled a team of over 50 licensed security
-              professionals who share our vision of proactive, client-focused protection.
-            </p> */}
           </motion.div>
 
           <motion.div
@@ -321,7 +513,7 @@ export default function Home() {
           >
             {[1, 2, 3, 4].map((_, i) => (
               <div key={i} style={{
-                height: '200px',
+                height: window.innerWidth <= 768 ? '150px' : '200px',
                 backgroundColor: green1,
                 opacity: 0.1 + (i * 0.05),
                 borderRadius: '12px',
@@ -334,26 +526,26 @@ export default function Home() {
 
       {/* Manager's Message */}
       <section style={{
-        padding: '100px 20px',
+        padding: window.innerWidth <= 768 ? '60px 15px' : '100px 20px',
         backgroundColor: 'white'
       }}>
         <div style={{
           maxWidth: '1100px',
           margin: '0 auto',
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '50px',
+          gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: window.innerWidth <= 768 ? '30px' : '50px',
           alignItems: 'center'
         }}>
           <div style={{
-            height: '300px',
+            height: window.innerWidth <= 768 ? '200px' : '300px',
             borderRadius: '20px',
             background: `linear-gradient(135deg, ${green1}, ${green2})`
           }} />
 
           <div>
             <h2 style={{
-              fontSize: 'clamp(28px, 5vw, 42px)',
+              fontSize: window.innerWidth <= 768 ? '28px' : '42px',
               fontWeight: '700',
               marginBottom: '20px',
               color: green1
@@ -394,7 +586,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section style={{
-        padding: '100px 50px',
+        padding: window.innerWidth <= 768 ? '60px 20px' : '100px 50px',
         background: `linear-gradient(135deg, ${green1}, #0a251a)`,
         color: 'white',
         textAlign: 'center'
@@ -405,10 +597,19 @@ export default function Home() {
           viewport={{ once: true }}
           style={{ maxWidth: '700px', margin: '0 auto' }}
         >
-          <h2 style={{ fontSize: '48px', fontWeight: '700', marginBottom: '30px' }}>
+          <h2 style={{
+            fontSize: window.innerWidth <= 768 ? '32px' : '48px',
+            fontWeight: '700',
+            marginBottom: window.innerWidth <= 768 ? '20px' : '30px'
+          }}>
             READY TO BE <span style={{ color: green2 }}>PROTECTED?</span>
           </h2>
-          <p style={{ fontSize: '18px', opacity: 0.9, marginBottom: '40px', lineHeight: '1.8' }}>
+          <p style={{
+            fontSize: window.innerWidth <= 768 ? '16px' : '18px',
+            opacity: 0.9,
+            marginBottom: window.innerWidth <= 768 ? '30px' : '40px',
+            lineHeight: '1.8'
+          }}>
             Get a free security assessment and consultation today.
             Our team is standing by 24/7.
           </p>
@@ -420,11 +621,13 @@ export default function Home() {
                 background: green2,
                 color: green1,
                 border: 'none',
-                padding: '18px 50px',
-                fontSize: '18px',
+                padding: window.innerWidth <= 768 ? '15px 40px' : '18px 50px',
+                fontSize: window.innerWidth <= 768 ? '16px' : '18px',
                 fontWeight: '700',
                 borderRadius: '4px',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                width: window.innerWidth <= 768 ? '100%' : 'auto',
+                maxWidth: window.innerWidth <= 768 ? '300px' : 'none'
               }}
             >
               CONTACT US

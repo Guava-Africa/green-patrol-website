@@ -1,13 +1,46 @@
 'use client'
 import { motion } from 'framer-motion'
+import { useState, useEffect, JSX } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
+// Define types for the service items
+interface BaseService {
+    name: string;
+    '12hrRate': string;
+    '24hrRate': string;
+    vat12: string;
+    vat24: string;
+    total12: string;
+    total24: string;
+    isVIP?: false;
+}
+
+interface VIPService {
+    name: string;
+    isVIP: true;
+    bulletPoints: string[];
+}
+
+type Service = BaseService | VIPService;
+
 export default function RateCardPage() {
+    const [isMobile, setIsMobile] = useState<boolean>(false)
+    const [isTablet, setIsTablet] = useState<boolean>(false)
     const green1 = '#0f4d36'
     const green2 = '#c8e6d4'
 
-    const services = [
+    useEffect(() => {
+        const checkScreenSize = (): void => {
+            setIsMobile(window.innerWidth <= 768)
+            setIsTablet(window.innerWidth > 768 && window.innerWidth <= 1024)
+        }
+        checkScreenSize()
+        window.addEventListener('resize', checkScreenSize)
+        return () => window.removeEventListener('resize', checkScreenSize)
+    }, [])
+
+    const services: Service[] = [
         {
             name: 'Static Guards',
             '12hrRate': '$340.00',
@@ -64,18 +97,242 @@ export default function RateCardPage() {
         }
     ]
 
+    // Type guard to check if service is VIP
+    const isVIPService = (service: Service): service is VIPService => {
+        return service.isVIP === true;
+    }
+
+    // Mobile card view render
+    const renderMobileCard = (service: Service, index: number): JSX.Element => {
+        if (isVIPService(service)) {
+            return (
+                <motion.div
+                    key={`vip-${index}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    style={{
+                        backgroundColor: '#f0f7f3',
+                        borderRadius: '12px',
+                        padding: '20px',
+                        marginBottom: '15px',
+                        border: `1px solid ${green2}`
+                    }}
+                >
+                    <h3 style={{
+                        fontSize: '25px',
+                        color: green1,
+                        fontWeight: '700',
+                        marginBottom: '15px',
+                        paddingBottom: '10px',
+                        borderBottom: `2px solid ${green2}`
+                    }}>
+                        {service.name}
+                    </h3>
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '12px'
+                    }}>
+                        {service.bulletPoints?.map((point: string, idx: number) => (
+                            <div key={idx} style={{
+                                display: 'flex',
+                                alignItems: 'flex-start',
+                                gap: '10px'
+                            }}>
+                                <span style={{
+                                    color: green1,
+                                    fontSize: '18px',
+                                    lineHeight: '1.4'
+                                }}>•</span>
+                                <span style={{
+                                    color: '#444',
+                                    fontSize: '15px',
+                                    lineHeight: '1.4'
+                                }}>{point}</span>
+                            </div>
+                        ))}
+                    </div>
+                </motion.div>
+            )
+        }
+
+        // Type assertion for base service
+        const baseService = service as BaseService;
+
+        return (
+            <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                style={{
+                    backgroundColor: index % 2 === 0 ? '#fff' : '#f8f8f8',
+                    borderRadius: '12px',
+                    padding: '20px',
+                    marginBottom: '15px',
+                    border: `1px solid ${green2}`,
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                }}
+            >
+                <h3 style={{
+                    fontSize: '25px',
+                    color: green1,
+                    fontWeight: '700',
+                    marginBottom: '15px',
+                    paddingBottom: '10px',
+                    borderBottom: `1px solid ${green2}`
+                }}>
+                    {baseService.name}
+                </h3>
+
+                {/* 12-Hour Shift */}
+                <div style={{ marginBottom: '15px' }}>
+                    <h4 style={{
+                        fontSize: '16px',
+                        color: green1,
+                        fontWeight: '600',
+                        marginBottom: '10px'
+                    }}>
+                        12-HOUR SHIFT
+                    </h4>
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gap: '10px'
+                    }}>
+                        <div style={{
+                            backgroundColor: 'white',
+                            padding: '10px',
+                            borderRadius: '8px',
+                            border: '1px solid #e0e0e0'
+                        }}>
+                            <div style={{ fontSize: '12px', color: '#666', marginBottom: '4px' }}>Base Rate</div>
+                            <div style={{ fontSize: '16px', color: green1, fontWeight: '600' }}>{baseService['12hrRate']}</div>
+                        </div>
+                        <div style={{
+                            backgroundColor: 'white',
+                            padding: '10px',
+                            borderRadius: '8px',
+                            border: '1px solid #e0e0e0'
+                        }}>
+                            <div style={{ fontSize: '12px', color: '#666', marginBottom: '4px' }}>VAT (15%)</div>
+                            <div style={{ fontSize: '16px', color: '#d32f2f', fontWeight: '600' }}>{baseService.vat12}</div>
+                        </div>
+                        <div style={{
+                            gridColumn: 'span 2',
+                            backgroundColor: 'rgba(15, 77, 54, 0.05)',
+                            padding: '12px',
+                            borderRadius: '8px',
+                            border: `1px solid ${green2}`,
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center'
+                        }}>
+                            <span style={{ fontSize: '14px', color: green1, fontWeight: '600' }}>GRAND TOTAL:</span>
+                            <span style={{ fontSize: '18px', color: green1, fontWeight: '700' }}>{baseService.total12}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* 24-Hour Shift */}
+                <div>
+                    <h4 style={{
+                        fontSize: '16px',
+                        color: green1,
+                        fontWeight: '600',
+                        marginBottom: '10px'
+                    }}>
+                        24-HOUR SHIFT
+                    </h4>
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gap: '10px'
+                    }}>
+                        <div style={{
+                            backgroundColor: 'white',
+                            padding: '10px',
+                            borderRadius: '8px',
+                            border: '1px solid #e0e0e0'
+                        }}>
+                            <div style={{ fontSize: '12px', color: '#666', marginBottom: '4px' }}>Base Rate</div>
+                            <div style={{
+                                fontSize: '16px',
+                                color: baseService['24hrRate'] === '-' ? '#999' : green1,
+                                fontWeight: baseService['24hrRate'] === '-' ? '400' : '600',
+                                fontStyle: baseService['24hrRate'] === '-' ? 'italic' : 'normal'
+                            }}>
+                                {baseService['24hrRate']}
+                            </div>
+                        </div>
+                        <div style={{
+                            backgroundColor: 'white',
+                            padding: '10px',
+                            borderRadius: '8px',
+                            border: '1px solid #e0e0e0'
+                        }}>
+                            <div style={{ fontSize: '12px', color: '#666', marginBottom: '4px' }}>VAT (15%)</div>
+                            <div style={{
+                                fontSize: '16px',
+                                color: baseService.vat24 === '-' ? '#999' : '#d32f2f',
+                                fontWeight: baseService.vat24 === '-' ? '400' : '600',
+                                fontStyle: baseService.vat24 === '-' ? 'italic' : 'normal'
+                            }}>
+                                {baseService.vat24}
+                            </div>
+                        </div>
+                        {baseService.total24 !== '-' && (
+                            <div style={{
+                                gridColumn: 'span 2',
+                                backgroundColor: 'rgba(15, 77, 54, 0.05)',
+                                padding: '12px',
+                                borderRadius: '8px',
+                                border: `1px solid ${green2}`,
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
+                            }}>
+                                <span style={{ fontSize: '14px', color: green1, fontWeight: '600' }}>GRAND TOTAL:</span>
+                                <span style={{ fontSize: '18px', color: green1, fontWeight: '700' }}>{baseService.total24}</span>
+                            </div>
+                        )}
+                        {baseService.total24 === '-' && (
+                            <div style={{
+                                gridColumn: 'span 2',
+                                backgroundColor: '#f5f5f5',
+                                padding: '12px',
+                                borderRadius: '8px',
+                                border: '1px dashed #999',
+                                textAlign: 'center',
+                                color: '#999',
+                                fontSize: '14px',
+                                fontStyle: 'italic'
+                            }}>
+                                Not available for 24-hour shift
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </motion.div>
+        )
+    }
+
     return (
         <div style={{
             fontFamily: 'Inter, sans-serif',
             margin: 0,
             padding: 0,
-            backgroundColor: 'white'
+            backgroundColor: 'white',
+            overflowX: 'hidden'
         }}>
             <Navbar />
 
             {/* Hero Section */}
             <section style={{
-                padding: '150px 50px 80px',
+                padding: isMobile ? '100px 20px 60px' : isTablet ? '120px 30px 70px' : '150px 50px 80px',
                 background: `linear-gradient(135deg, ${green1}, #0a251a)`,
                 color: 'white'
             }}>
@@ -85,215 +342,235 @@ export default function RateCardPage() {
                     transition={{ duration: 0.8 }}
                     style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}
                 >
-                    <h1 style={{ fontSize: '52px', fontWeight: '700', marginBottom: '20px' }}>
+                    <h1 style={{
+                        fontSize: isMobile ? '36px' : isTablet ? '44px' : '52px',
+                        fontWeight: '700',
+                        marginBottom: '20px',
+                        lineHeight: '1.2'
+                    }}>
                         RATE <span style={{ color: green2 }}>CARD</span>
                     </h1>
-                    <p style={{ fontSize: '18px', opacity: 0.9, maxWidth: '700px', margin: '0 auto' }}>
+                    <p style={{
+                        fontSize: isMobile ? '16px' : isTablet ? '17px' : '18px',
+                        opacity: 0.9,
+                        maxWidth: '700px',
+                        margin: '0 auto',
+                        padding: isMobile ? '0 10px' : '0'
+                    }}>
                         Fixed rates with 15% VAT
                     </p>
                 </motion.div>
             </section>
 
-            {/* Rate Table */}
-            <section style={{ padding: '80px 50px' }}>
+            {/* Rate Table/Cards Section */}
+            <section style={{
+                padding: isMobile ? '40px 20px' : isTablet ? '60px 30px' : '80px 50px'
+            }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        style={{ overflowX: 'auto' }}
                     >
-                        <table style={{
-                            width: '100%',
-                            borderCollapse: 'collapse',
-                            backgroundColor: 'white',
-                            boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
-                            borderRadius: '12px',
-                            overflow: 'hidden'
-                        }}>
-                            <thead>
-                                <tr style={{ backgroundColor: green1, color: 'white' }}>
-                                    <th rowSpan={2} style={{ padding: '20px', textAlign: 'left', borderRight: `2px solid ${green2}` }}>
-                                        SERVICE
-                                    </th>
-                                    <th colSpan={3} style={{ padding: '20px', textAlign: 'center', borderRight: `2px solid ${green2}` }}>
-                                        12-HOUR SHIFT
-                                    </th>
-                                    <th colSpan={3} style={{ padding: '20px', textAlign: 'center' }}>
-                                        24-HOUR SHIFT
-                                    </th>
-                                </tr>
-                                <tr style={{ backgroundColor: green1, color: 'white' }}>
-                                    <th style={{ padding: '15px', textAlign: 'center', borderRight: `1px solid ${green2}` }}>
-                                        Base Rate
-                                    </th>
-                                    <th style={{ padding: '15px', textAlign: 'center', borderRight: `1px solid ${green2}` }}>
-                                        VAT (15%)
-                                    </th>
-                                    <th style={{ padding: '15px', textAlign: 'center', borderRight: `2px solid ${green2}` }}>
-                                        GRAND TOTAL
-                                    </th>
-                                    <th style={{ padding: '15px', textAlign: 'center', borderRight: `1px solid ${green2}` }}>
-                                        Base Rate
-                                    </th>
-                                    <th style={{ padding: '15px', textAlign: 'center', borderRight: `1px solid ${green2}` }}>
-                                        VAT (15%)
-                                    </th>
-                                    <th style={{ padding: '15px', textAlign: 'center' }}>
-                                        GRAND TOTAL
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {services.map((service, index) => {
-                                    if (service.isVIP) {
-                                        return (
-                                            <>
-                                                <tr key={`vip-${index}`} style={{
-                                                    backgroundColor: '#f0f7f3',
-                                                    borderBottom: '1px solid #e0e0e0'
-                                                }}>
-                                                    <td style={{
-                                                        padding: '18px 20px',
-                                                        fontWeight: '700',
-                                                        color: green1,
-                                                        borderRight: `2px solid #e0e0e0`
+                        {/* Desktop/Tablet Table View */}
+                        {!isMobile && (
+                            <div style={{ overflowX: 'auto' }}>
+                                <table style={{
+                                    width: '100%',
+                                    borderCollapse: 'collapse',
+                                    backgroundColor: 'white',
+                                    boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+                                    borderRadius: '12px',
+                                    overflow: 'hidden',
+                                    minWidth: isTablet ? '900px' : '1000px'
+                                }}>
+                                    <thead>
+                                        <tr style={{ backgroundColor: green1, color: 'white' }}>
+                                            <th rowSpan={2} style={{ padding: isTablet ? '15px' : '20px', textAlign: 'left', borderRight: `2px solid ${green2}` }}>
+                                                SERVICE
+                                            </th>
+                                            <th colSpan={3} style={{ padding: isTablet ? '15px' : '20px', textAlign: 'center', borderRight: `2px solid ${green2}` }}>
+                                                12-HOUR SHIFT
+                                            </th>
+                                            <th colSpan={3} style={{ padding: isTablet ? '15px' : '20px', textAlign: 'center' }}>
+                                                24-HOUR SHIFT
+                                            </th>
+                                        </tr>
+                                        <tr style={{ backgroundColor: green1, color: 'white' }}>
+                                            <th style={{ padding: isTablet ? '12px' : '15px', textAlign: 'center', borderRight: `1px solid ${green2}` }}>
+                                                Base Rate
+                                            </th>
+                                            <th style={{ padding: isTablet ? '12px' : '15px', textAlign: 'center', borderRight: `1px solid ${green2}` }}>
+                                                VAT (15%)
+                                            </th>
+                                            <th style={{ padding: isTablet ? '12px' : '15px', textAlign: 'center', borderRight: `2px solid ${green2}` }}>
+                                                GRAND TOTAL
+                                            </th>
+                                            <th style={{ padding: isTablet ? '12px' : '15px', textAlign: 'center', borderRight: `1px solid ${green2}` }}>
+                                                Base Rate
+                                            </th>
+                                            <th style={{ padding: isTablet ? '12px' : '15px', textAlign: 'center', borderRight: `1px solid ${green2}` }}>
+                                                VAT (15%)
+                                            </th>
+                                            <th style={{ padding: isTablet ? '12px' : '15px', textAlign: 'center' }}>
+                                                GRAND TOTAL
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {services.map((service: Service, index: number) => {
+                                            if (isVIPService(service)) {
+                                                return (
+                                                    <tr key={`vip-${index}`} style={{
+                                                        backgroundColor: '#f0f7f3',
+                                                        borderBottom: '1px solid #e0e0e0'
                                                     }}>
-                                                        {service.name}
-                                                    </td>
-                                                    <td colSpan={6} style={{
-                                                        padding: '18px 20px'
-                                                    }}>
-                                                        <div style={{
-                                                            display: 'flex',
-                                                            flexDirection: 'column',
-                                                            gap: '8px'
+                                                        <td style={{
+                                                            padding: isTablet ? '15px' : '18px 20px',
+                                                            fontWeight: '700',
+                                                            color: green1,
+                                                            borderRight: `2px solid #e0e0e0`,
+                                                            fontSize: isTablet ? '15px' : '16px'
                                                         }}>
-                                                            {service.bulletPoints?.map((point, idx) => (
-                                                                <div key={idx} style={{
-                                                                    display: 'flex',
-                                                                    alignItems: 'center',
-                                                                    gap: '10px'
-                                                                }}>
-                                                                    <span style={{
-                                                                        color: green1,
-                                                                        fontSize: '18px'
-                                                                    }}>•</span>
-                                                                    <span style={{
-                                                                        color: '#444',
-                                                                        fontSize: '15px'
-                                                                    }}>{point}</span>
-                                                                </div>
-                                                            ))}
-                                                        </div>
+                                                            {service.name}
+                                                        </td>
+                                                        <td colSpan={6} style={{
+                                                            padding: isTablet ? '15px' : '18px 20px'
+                                                        }}>
+                                                            <div style={{
+                                                                display: 'flex',
+                                                                flexDirection: 'column',
+                                                                gap: '8px'
+                                                            }}>
+                                                                {service.bulletPoints?.map((point: string, idx: number) => (
+                                                                    <div key={idx} style={{
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        gap: '10px'
+                                                                    }}>
+                                                                        <span style={{
+                                                                            color: green1,
+                                                                            fontSize: '16px'
+                                                                        }}>•</span>
+                                                                        <span style={{
+                                                                            color: '#444',
+                                                                            fontSize: isTablet ? '14px' : '15px'
+                                                                        }}>{point}</span>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            }
+
+                                            const baseService = service as BaseService;
+
+                                            return (
+                                                <tr
+                                                    key={index}
+                                                    style={{
+                                                        borderBottom: '1px solid #e0e0e0',
+                                                        backgroundColor: index % 2 === 0 ? '#fff' : '#f8f8f8'
+                                                    }}
+                                                >
+                                                    <td style={{
+                                                        padding: isTablet ? '15px' : '18px 20px',
+                                                        fontWeight: '500',
+                                                        color: '#333',
+                                                        borderRight: `2px solid #e0e0e0`,
+                                                        fontSize: isTablet ? '14px' : '16px'
+                                                    }}>
+                                                        {baseService.name}
+                                                    </td>
+
+                                                    {/* 12-Hour Columns */}
+                                                    <td style={{
+                                                        padding: isTablet ? '15px 10px' : '18px 15px',
+                                                        color: green1,
+                                                        fontWeight: '500',
+                                                        textAlign: 'center',
+                                                        borderRight: `1px solid #e0e0e0`,
+                                                        fontSize: isTablet ? '14px' : '16px'
+                                                    }}>
+                                                        {baseService['12hrRate']}
+                                                    </td>
+                                                    <td style={{
+                                                        padding: isTablet ? '15px 10px' : '18px 15px',
+                                                        color: '#d32f2f',
+                                                        fontWeight: '500',
+                                                        textAlign: 'center',
+                                                        borderRight: `1px solid #e0e0e0`,
+                                                        fontSize: isTablet ? '14px' : '16px'
+                                                    }}>
+                                                        {baseService.vat12}
+                                                    </td>
+                                                    <td style={{
+                                                        padding: isTablet ? '15px 10px' : '18px 15px',
+                                                        color: green1,
+                                                        fontWeight: '700',
+                                                        textAlign: 'center',
+                                                        borderRight: `2px solid #e0e0e0`,
+                                                        backgroundColor: 'rgba(15, 77, 54, 0.05)',
+                                                        fontSize: isTablet ? '14px' : '16px'
+                                                    }}>
+                                                        {baseService.total12}
+                                                    </td>
+
+                                                    {/* 24-Hour Columns */}
+                                                    <td style={{
+                                                        padding: isTablet ? '15px 10px' : '18px 15px',
+                                                        color: baseService['24hrRate'] === '-' ? '#999' : green1,
+                                                        fontWeight: baseService['24hrRate'] === '-' ? '400' : '500',
+                                                        textAlign: 'center',
+                                                        borderRight: `1px solid #e0e0e0`,
+                                                        fontStyle: baseService['24hrRate'] === '-' ? 'italic' : 'normal',
+                                                        fontSize: isTablet ? '14px' : '16px'
+                                                    }}>
+                                                        {baseService['24hrRate']}
+                                                    </td>
+                                                    <td style={{
+                                                        padding: isTablet ? '15px 10px' : '18px 15px',
+                                                        color: baseService.vat24 === '-' ? '#999' : '#d32f2f',
+                                                        fontWeight: baseService.vat24 === '-' ? '400' : '500',
+                                                        textAlign: 'center',
+                                                        borderRight: `1px solid #e0e0e0`,
+                                                        fontStyle: baseService.vat24 === '-' ? 'italic' : 'normal',
+                                                        fontSize: isTablet ? '14px' : '16px'
+                                                    }}>
+                                                        {baseService.vat24}
+                                                    </td>
+                                                    <td style={{
+                                                        padding: isTablet ? '15px 10px' : '18px 15px',
+                                                        color: baseService.total24 === '-' ? '#999' : green1,
+                                                        fontWeight: baseService.total24 === '-' ? '400' : '700',
+                                                        textAlign: 'center',
+                                                        backgroundColor: baseService.total24 === '-' ? 'transparent' : 'rgba(15, 77, 54, 0.05)',
+                                                        fontStyle: baseService.total24 === '-' ? 'italic' : 'normal',
+                                                        fontSize: isTablet ? '14px' : '16px'
+                                                    }}>
+                                                        {baseService.total24}
                                                     </td>
                                                 </tr>
-                                                {/* <tr style={{
-                                                    backgroundColor: '#f0f7f3',
-                                                    borderBottom: '1px solid #e0e0e0'
-                                                }}>
-                                                    <td colSpan={7} style={{
-                                                        padding: '0 20px 15px 20px',
-                                                        color: '#666',
-                                                        fontSize: '13px',
-                                                        fontStyle: 'italic'
-                                                    }}>
-                                                        * VIP Protection rates vary based on contract length. 15% VAT applicable.
-                                                    </td>
-                                                </tr> */}
-                                            </>
-                                        )
-                                    }
+                                            )
+                                        })}
+                                    </tbody>
+                                </table>
+                            </div>
+                        )}
 
-                                    return (
-                                        <tr
-                                            key={index}
-                                            style={{
-                                                borderBottom: '1px solid #e0e0e0',
-                                                backgroundColor: index % 2 === 0 ? '#fff' : '#f8f8f8'
-                                            }}
-                                        >
-                                            <td style={{
-                                                padding: '18px 20px',
-                                                fontWeight: '500',
-                                                color: '#333',
-                                                borderRight: `2px solid #e0e0e0`
-                                            }}>
-                                                {service.name}
-                                            </td>
-
-                                            {/* 12-Hour Columns */}
-                                            <td style={{
-                                                padding: '18px 15px',
-                                                color: green1,
-                                                fontWeight: '500',
-                                                textAlign: 'center',
-                                                borderRight: `1px solid #e0e0e0`
-                                            }}>
-                                                {service['12hrRate']}
-                                            </td>
-                                            <td style={{
-                                                padding: '18px 15px',
-                                                color: '#d32f2f',
-                                                fontWeight: '500',
-                                                textAlign: 'center',
-                                                borderRight: `1px solid #e0e0e0`
-                                            }}>
-                                                {service.vat12}
-                                            </td>
-                                            <td style={{
-                                                padding: '18px 15px',
-                                                color: green1,
-                                                fontWeight: '700',
-                                                textAlign: 'center',
-                                                borderRight: `2px solid #e0e0e0`,
-                                                backgroundColor: 'rgba(15, 77, 54, 0.05)'
-                                            }}>
-                                                {service.total12}
-                                            </td>
-
-                                            {/* 24-Hour Columns */}
-                                            <td style={{
-                                                padding: '18px 15px',
-                                                color: service['24hrRate'] === '-' ? '#999' : green1,
-                                                fontWeight: service['24hrRate'] === '-' ? '400' : '500',
-                                                textAlign: 'center',
-                                                borderRight: `1px solid #e0e0e0`,
-                                                fontStyle: service['24hrRate'] === '-' ? 'italic' : 'normal'
-                                            }}>
-                                                {service['24hrRate']}
-                                            </td>
-                                            <td style={{
-                                                padding: '18px 15px',
-                                                color: service.vat24 === '-' ? '#999' : '#d32f2f',
-                                                fontWeight: service.vat24 === '-' ? '400' : '500',
-                                                textAlign: 'center',
-                                                borderRight: `1px solid #e0e0e0`,
-                                                fontStyle: service.vat24 === '-' ? 'italic' : 'normal'
-                                            }}>
-                                                {service.vat24}
-                                            </td>
-                                            <td style={{
-                                                padding: '18px 15px',
-                                                color: service.total24 === '-' ? '#999' : green1,
-                                                fontWeight: service.total24 === '-' ? '400' : '700',
-                                                textAlign: 'center',
-                                                backgroundColor: service.total24 === '-' ? 'transparent' : 'rgba(15, 77, 54, 0.05)',
-                                                fontStyle: service.total24 === '-' ? 'italic' : 'normal'
-                                            }}>
-                                                {service.total24}
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                            </tbody>
-                        </table>
+                        {/* Mobile Card View */}
+                        {isMobile && (
+                            <div>
+                                {services.map((service: Service, index: number) => renderMobileCard(service, index))}
+                            </div>
+                        )}
 
                         <p style={{
                             textAlign: 'center',
-                            marginTop: '30px',
+                            marginTop: isMobile ? '20px' : '30px',
                             color: '#666',
-                            fontSize: '14px'
+                            fontSize: isMobile ? '13px' : '14px'
                         }}>
                             All rates in US Dollars (USD) • 15% VAT included in grand total
                         </p>
