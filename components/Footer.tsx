@@ -149,7 +149,7 @@ export default function Footer() {
                             { name: 'About Us', path: '/about' },
                             { name: 'Contact', path: '/contact' },
                             { name: 'Rate Card', path: '/rate-card' },
-                            { name: 'Join Us', path: '/join' }
+                            // { name: 'Join Us', path: '/join' }
                         ].map((link, i) => (
                             <Link key={i} href={link.path} style={{
                                 color: '#aaa',
