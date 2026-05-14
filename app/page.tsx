@@ -19,219 +19,239 @@ export default function Home() {
     }}>
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Hero Section - IMPROVED: cleaner, more trustworthy, layman-friendly */}
       <section style={{
-        minHeight: '100vh',
-        background: `radial-gradient(circle at 30% 50%, ${green1}, #0a251a)`,
+        minHeight: '90vh',
+        background: `radial-gradient(ellipse at 20% 40%, #0e3b2a, #071a12)`,
         position: 'relative',
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '0 5%'
+        padding: '3rem 1.5rem'
       }}>
-        {/* Animated gradient orbs */}
+        {/* Abstract background pattern - subtle shield motif */}
         <div style={{
           position: 'absolute',
-          right: '5%',
-          top: '10%',
-          width: '600px',
-          height: '600px',
-          zIndex: 2,
-        }}>
-          {/* Large orb */}
-          <motion.div
-            animate={{
-              y: [0, 30, 0],
-              x: [0, -20, 0],
-              scale: [1, 1.05, 1],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            style={{
-              position: 'absolute',
-              right: '50px',
-              top: '50px',
-              width: '300px',
-              height: '300px',
-              borderRadius: '50%',
-              background: `radial-gradient(circle at 30% 30%, ${green2}, transparent 70%)`,
-              opacity: 0.15,
-              filter: 'blur(20px)'
-            }}
-          />
-          {/* Medium orb */}
-          <motion.div
-            animate={{
-              y: [0, -40, 0],
-              x: [0, 30, 0],
-              scale: [1, 1.08, 1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-            style={{
-              position: 'absolute',
-              right: '200px',
-              top: '200px',
-              width: '200px',
-              height: '200px',
-              borderRadius: '50%',
-              background: `radial-gradient(circle at 70% 70%, ${green2}, transparent 70%)`,
-              opacity: 0.12,
-              filter: 'blur(15px)'
-            }}
-          />
-          {/* Small orb */}
-          <motion.div
-            animate={{
-              y: [0, 30, 0, -30, 0],
-              x: [0, -15, 0, 15, 0],
-              scale: [1, 1.1, 1, 1.1, 1],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            style={{
-              position: 'absolute',
-              right: '350px',
-              top: '350px',
-              width: '100px',
-              height: '100px',
-              borderRadius: '50%',
-              background: green2,
-              opacity: 0.1,
-              filter: 'blur(10px)'
-            }}
-          />
-        </div>
+          inset: 0,
+          opacity: 0.03,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z'/%3E%3C/svg%3E")`,
+          backgroundRepeat: 'repeat',
+          backgroundSize: '48px',
+          pointerEvents: 'none'
+        }} />
 
-        {/* Hero Container - Centered with max width */}
+        {/* Soft ambient glows */}
+        <motion.div
+          animate={{ scale: [1, 1.1, 1], opacity: [0.08, 0.12, 0.08] }}
+          transition={{ duration: 8, repeat: Infinity }}
+          style={{
+            position: 'absolute',
+            right: '-10%',
+            top: '20%',
+            width: '500px',
+            height: '500px',
+            borderRadius: '50%',
+            background: `radial-gradient(circle, ${green2}, transparent 70%)`,
+            filter: 'blur(60px)',
+            pointerEvents: 'none'
+          }}
+        />
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
+          transition={{ duration: 12, repeat: Infinity, delay: 2 }}
+          style={{
+            position: 'absolute',
+            left: '-5%',
+            bottom: '0%',
+            width: '400px',
+            height: '400px',
+            borderRadius: '50%',
+            background: `radial-gradient(circle, ${green1}, transparent 70%)`,
+            filter: 'blur(50px)',
+            pointerEvents: 'none'
+          }}
+        />
+
         <div style={{
-          maxWidth: '1400px',
+          maxWidth: '1280px',
           width: '100%',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 'clamp(30px, 5vw, 80px)',
-          alignItems: 'center',
+          margin: '0 auto',
           position: 'relative',
-          zIndex: 3,
+          zIndex: 3
         }}>
-          {/* Hero Content - Left Side */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
-            style={{
-              color: 'white',
-            }}
-          >
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.7 }}
-              transition={{ delay: 0.3 }}
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            gap: 'clamp(2rem, 5vw, 3rem)',
+            justifyContent: 'space-between'
+          }}>
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
               style={{
-                fontSize: '14px',
-                letterSpacing: '4px',
-                marginBottom: '15px',
-                display: 'block'
+                flex: '1.2',
+                minWidth: '280px'
               }}
             >
-              PROTECTION • SECURITY • TRUST
-            </motion.span>
-
-            <motion.h1
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              style={{
-                fontSize: 'clamp(42px, 5vw, 72px)',
-                fontWeight: '700',
-                lineHeight: '1.1',
-                marginBottom: '12px',
-                textShadow: '0 10px 30px rgba(0,0,0,0.3)'
-              }}
-            >
-              STANDING<br />BEHIND THE<br /><span style={{ color: green2 }}>SHIELD</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 0.9 }}
-              transition={{ delay: 0.5 }}
-              style={{
-                fontSize: 'clamp(16px, 2vw, 18px)',
-                marginBottom: 'clamp(30px, 4vw, 40px)',
-                lineHeight: '1.8',
-                maxWidth: '500px'
-              }}
-            >
-              Professional security guards, 24/7 monitoring, and instant response.
-              Your safety is our mission.
-            </motion.p>
-          </motion.div>
-
-          {/* Hero Image - Right Side */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <div style={{
-              position: 'relative',
-              width: '100%',
-              maxWidth: '900px',
-              height: 'auto',
-              borderRadius: '20px',
-              overflow: 'hidden',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-            }}>
-              <Image
-                src={Hero}
-                alt='hero image'
+              {/* Trust badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
                 style={{
-                  width: '100%',
-                  height: 'auto',
-                  objectFit: 'cover',
+                  display: 'inline-block',
+                  background: `rgba(200, 230, 212, 0.15)`,
+                  backdropFilter: 'blur(8px)',
+                  padding: '0.3rem 1rem',
+                  borderRadius: '40px',
+                  fontSize: '0.75rem',
+                  fontWeight: '500',
+                  letterSpacing: '0.5px',
+                  color: green2,
+                  marginBottom: '1.5rem',
+                  border: `0.5px solid ${green2}40`
                 }}
-                priority
-              />
-            </div>
-          </motion.div>
-        </div>
+              >
+                ✓ LICENSED & INSURED PROTECTION
+              </motion.div>
 
-        {/* Mobile responsive style override */}
-        <style jsx>{`
-          @media (max-width: 768px) {
-            .hero-container {
-              grid-template-columns: 1fr !important;
-              text-align: center;
-            }
-            .hero-text {
-              text-align: center;
-            }
-            .hero-paragraph {
-              margin-left: auto !important;
-              margin-right: auto !important;
-            }
-          }
-        `}</style>
+              <motion.h1
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                style={{
+                  fontSize: 'clamp(2.5rem, 7vw, 4.5rem)',
+                  fontWeight: '800',
+                  lineHeight: '1.15',
+                  color: 'white',
+                  marginBottom: '1.2rem',
+                  letterSpacing: '-0.02em'
+                }}
+              >
+                Your Safety,<br />
+                <span style={{ color: green2, borderBottom: `3px solid ${green2}`, display: 'inline-block' }}>
+                  Our Mission.
+                </span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 0.9 }}
+                transition={{ delay: 0.4 }}
+                style={{
+                  fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+                  lineHeight: '1.5',
+                  color: 'rgba(255,255,255,0.85)',
+                  maxWidth: '550px',
+                  marginBottom: '2rem'
+                }}
+              >
+                Professional security guards, 24/7 emergency response, and smart surveillance.
+                We keep your family, business, and assets safe — day and night.
+              </motion.p>
+
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '1rem',
+                  alignItems: 'center',
+                  marginBottom: '2.5rem'
+                }}
+              >
+                {/* <Link href="/contact">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{
+                      background: green2,
+                      color: green1,
+                      fontWeight: '700',
+                      padding: '0.9rem 2rem',
+                      borderRadius: '60px',
+                      border: 'none',
+                      fontSize: '1rem',
+                      cursor: 'pointer',
+                      boxShadow: '0 10px 20px -5px rgba(0,0,0,0.3)'
+                    }}
+                  >
+                    Free Security Assessment →
+                  </motion.button>
+                </Link>
+                <Link href="#services" style={{ color: 'white', fontWeight: '500', textDecoration: 'none' }}>
+                  Explore services ↓
+                </Link> */}
+              </motion.div>
+
+              {/* Trust stats - great for layman */}
+              {/* <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                style={{
+                  display: 'flex',
+                  gap: '2rem',
+                  flexWrap: 'wrap'
+                }}
+              >
+                <div>
+                  <span style={{ fontWeight: '800', fontSize: '1.6rem', color: green2 }}>500+</span><br />
+                  <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.8rem' }}>CLIENTS PROTECTED</span>
+                </div>
+                <div>
+                  <span style={{ fontWeight: '800', fontSize: '1.6rem', color: green2 }}>24/7</span><br />
+                  <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.8rem' }}>EMERGENCY DISPATCH</span>
+                </div>
+                <div>
+                  <span style={{ fontWeight: '800', fontSize: '1.6rem', color: green2 }}>100%</span><br />
+                  <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.8rem' }}>TRAINED PROFESSIONALS</span>
+                </div>
+              </motion.div> */}
+            </motion.div>
+
+            {/* Right Content - Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              style={{
+                flex: '1',
+                minWidth: '280px',
+                position: 'relative'
+              }}
+            >
+              <div style={{
+                borderRadius: '32px',
+                overflow: 'hidden',
+                boxShadow: '0 30px 40px -20px rgba(0,0,0,0.5)',
+                border: `1px solid ${green2}30`,
+                background: '#124632'
+              }}>
+                <Image
+                  src={Hero}
+                  alt='Professional security guard protecting property'
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    display: 'block',
+                    objectFit: 'cover'
+                  }}
+                  priority
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </section>
 
-      {/* Services Preview Section */}
+      {/* Services Section - keeping your original but slightly cleaner */}
       <section style={{
         padding: 'clamp(60px, 8vw, 100px) clamp(20px, 5vw, 50px)',
         backgroundColor: 'white'
@@ -244,16 +264,28 @@ export default function Home() {
             viewport={{ once: true }}
             style={{ textAlign: 'center', marginBottom: '60px' }}
           >
+            <span style={{
+              background: '#eef6f2',
+              color: green1,
+              padding: '0.25rem 1rem',
+              borderRadius: '40px',
+              fontWeight: '600',
+              fontSize: '0.8rem',
+              display: 'inline-block',
+              marginBottom: '1rem'
+            }}>
+              WHAT WE OFFER
+            </span>
             <h2 style={{
               fontSize: 'clamp(36px, 5vw, 48px)',
               fontWeight: '700',
               color: '#1a1a1a',
               marginBottom: '20px'
             }}>
-              OUR <span style={{ color: green1 }}>SERVICES</span>
+              Security Solutions <span style={{ color: green1 }}>For Every Need</span>
             </h2>
             <p style={{ fontSize: '18px', color: '#666', maxWidth: '600px', margin: '0 auto' }}>
-              Comprehensive security solutions tailored to your needs
+              From commercial sites to personal VIP protection — tailored to your environment
             </p>
           </motion.div>
 
@@ -263,12 +295,12 @@ export default function Home() {
             gap: 'clamp(20px, 3vw, 30px)'
           }}>
             {[
-              { title: 'Static Guards', desc: 'Professional on-site security personnel for constant vigilance at your location', icon: '🛡️' },
-              { title: 'Armed Guards', desc: 'Highly trained armed professionals for high-risk security situations', icon: '⚔️' },
-              { title: 'Undercover Guards', desc: 'Discreet plain-clothes security operatives for subtle protection', icon: '🕵️' },
-              { title: 'VIP Protection', desc: 'Executive protection services for high-profile individuals and events', icon: '👤' },
-              { title: 'Canine Security', desc: 'Trained K-9 units for enhanced detection and patrol capabilities', icon: '🐕' },
-              { title: 'Event Coverage', desc: 'Comprehensive security planning and execution for events of any size', icon: '📋' }
+              { title: 'Static Guards', desc: 'Visible, uniformed officers at your premises. Deterrence & immediate response.', icon: '🛡️', tag: '24/7 presence' },
+              { title: 'Armed Response', desc: 'Licensed tactical units for high-risk assets, banks, and valuable shipments.', icon: '⚔️', tag: 'Rapid deployment' },
+              { title: 'Undercover Operatives', desc: 'Plain-clothes security to blend in & detect threats discreetly.', icon: '🕵️', tag: 'Covert surveillance' },
+              { title: 'VIP Protection', desc: 'Executive protection specialists for celebrities, executives, and diplomats.', icon: '👤', tag: 'Risk assessment' },
+              { title: 'Canine Security', desc: 'Highly trained detection dogs for patrol, explosives & narcotics detection.', icon: '🐕', tag: 'Enhanced deterrence' },
+              { title: 'Event Coverage', desc: 'Full-scale planning, access control, crowd management for safe events.', icon: '📋', tag: 'Crowd safety' }
             ].map((service, index) => (
               <motion.div
                 key={index}
@@ -278,28 +310,40 @@ export default function Home() {
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
                 style={{
-                  backgroundColor: '#f8f8f8',
+                  backgroundColor: '#ffffff',
                   padding: 'clamp(30px, 4vw, 40px) clamp(20px, 3vw, 30px)',
-                  borderRadius: '12px',
+                  borderRadius: '24px',
                   textAlign: 'center',
                   cursor: 'pointer',
-                  border: `1px solid ${green2}`,
-                  transition: 'all 0.3s ease'
+                  border: `1px solid #e2e8f0`,
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.02)'
                 }}
               >
                 <div style={{ fontSize: '48px', marginBottom: '20px' }}>{service.icon}</div>
                 <h3 style={{ fontSize: '24px', color: green1, marginBottom: '15px' }}>{service.title}</h3>
-                <p style={{ color: '#666', lineHeight: '1.6' }}>{service.desc}</p>
+                <p style={{ color: '#666', lineHeight: '1.6', marginBottom: '15px' }}>{service.desc}</p>
+                <span style={{
+                  background: '#eef6f2',
+                  color: green1,
+                  padding: '4px 12px',
+                  borderRadius: '30px',
+                  fontSize: '0.7rem',
+                  fontWeight: '600',
+                  display: 'inline-block'
+                }}>
+                  {service.tag}
+                </span>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Modern Security Section */}
+      {/* Modern Security Section - improved readability */}
       <section style={{
         padding: 'clamp(60px, 8vw, 100px) clamp(20px, 5vw, 50px)',
-        backgroundColor: '#f0f7f3'
+        backgroundColor: '#f8fbf9'
       }}>
         <div style={{
           maxWidth: '1200px',
@@ -315,25 +359,47 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
+            <span style={{
+              background: green2,
+              color: green1,
+              padding: '0.2rem 1rem',
+              borderRadius: '30px',
+              fontWeight: '600',
+              fontSize: '0.75rem',
+              display: 'inline-block',
+              marginBottom: '1rem'
+            }}>
+              MODERN PROTECTION
+            </span>
             <h2 style={{
               fontSize: 'clamp(32px, 5vw, 42px)',
               fontWeight: '700',
               color: '#1a1a1a',
-              marginBottom: '30px',
+              marginBottom: '20px',
               lineHeight: '1.2'
             }}>
-              MODERN SECURITY<br /><span style={{ color: green1 }}>FOR MODERN TIMES</span>
+              Security That Works<br /><span style={{ color: green1 }}>With You, Not Against You</span>
             </h2>
             <p style={{
               fontSize: '16px',
-              color: '#555',
+              color: '#2d3e35',
               lineHeight: '1.8',
-              marginBottom: '25px'
+              marginBottom: '20px'
             }}>
-              GreenPatrol was founded in 2025 with a fresh approach to security services.
-              We combine traditional protection values with cutting-edge technology to
-              deliver unparalleled safety solutions.
+              GreenPatrol blends old-school vigilance with cutting-edge technology. Our control room monitors
+              live feeds, GPS-tracked patrols, and wearables to ensure rapid response times under 5 minutes.
             </p>
+            <ul style={{ listStyle: 'none', padding: 0, color: '#2d5a46' }}>
+              <li style={{ display: 'flex', gap: '10px', marginBottom: '12px' }}>
+                <span>✅</span> <span>Custom security plans for each client</span>
+              </li>
+              <li style={{ display: 'flex', gap: '10px', marginBottom: '12px' }}>
+                <span>✅</span> <span>Background-checked, trained & insured officers</span>
+              </li>
+              <li style={{ display: 'flex', gap: '10px', marginBottom: '12px' }}>
+                <span>✅</span> <span>Regular drills & continuous improvement</span>
+              </li>
+            </ul>
           </motion.div>
 
           <motion.div
@@ -347,20 +413,29 @@ export default function Home() {
               gap: '20px'
             }}
           >
-            {[1, 2, 3, 4].map((_, i) => (
+            {[
+              { emoji: '🔒', label: 'Smart Tech', desc: 'AI monitoring' },
+              { emoji: '🚨', label: 'Instant Alert', desc: 'real-time dispatch' },
+              { emoji: '📋', label: 'Certified Guards', desc: 'state licensed' },
+              { emoji: '📡', label: 'Remote CCTV', desc: 'central command' }
+            ].map((item, i) => (
               <div key={i} style={{
-                height: 'clamp(150px, 20vw, 200px)',
-                backgroundColor: green1,
-                opacity: 0.1 + (i * 0.05),
-                borderRadius: '12px',
-                backgroundImage: `radial-gradient(circle at 30% 30%, ${green2}, transparent)`
-              }} />
+                background: '#e9f3ef',
+                borderRadius: '28px',
+                padding: '1.5rem 1rem',
+                textAlign: 'center',
+                border: `1px solid #d0e2d8`
+              }}>
+                <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{item.emoji}</div>
+                <div style={{ fontWeight: '700', marginBottom: '0.25rem', color: green1 }}>{item.label}</div>
+                {/* <div style={{ fontSize: '0.75rem', color: '#2d5a46' }}>{item.desc}</div> */}
+              </div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Manager's Message */}
+      {/* Manager's Message - kept but cleaned */}
       <section style={{
         padding: 'clamp(60px, 8vw, 100px) clamp(15px, 4vw, 20px)',
         backgroundColor: 'white'
@@ -373,57 +448,63 @@ export default function Home() {
           gap: 'clamp(30px, 5vw, 50px)',
           alignItems: 'center'
         }}>
-          <div style={{
-            height: 'clamp(200px, 30vw, 300px)',
-            borderRadius: '20px',
-            background: `linear-gradient(135deg, ${green1}, ${green2})`
-          }} />
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            style={{
+              background: `linear-gradient(135deg, ${green1}, ${green2})`,
+              borderRadius: '32px',
+              padding: '2rem',
+              textAlign: 'center',
+              color: 'white',
+              minHeight: '300px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}
+          >
+            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>👤</div>
+            <div style={{ fontWeight: '700', fontSize: '1.3rem' }}>Mutakaya S.</div>
+            <div style={{ fontSize: '0.8rem', opacity: 0.8, marginBottom: '1rem' }}>Operations Director</div>
+            <hr style={{ width: '50px', margin: '1rem auto', borderColor: green2 }} />
+            <div style={{ fontSize: '0.9rem' }}>"We don't just watch over your property — we become your trusted partner in safety."</div>
+          </motion.div>
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
             <h2 style={{
               fontSize: 'clamp(28px, 5vw, 42px)',
               fontWeight: '700',
               marginBottom: '20px',
               color: green1
             }}>
-              A WORD FROM OUR MANAGER
+              A Word From Our Manager
             </h2>
-
-            <p style={{ lineHeight: '1.6', marginBottom: '20px', color: '#444' }}>
-              At Green Patrol, we understand the importance of
-              safeguarding people, assets, and properties. As Operations
-              Manager, I am committed to delivering exceptional security
-              solutions that meet the unique needs of our clients.
+            <p style={{ lineHeight: '1.6', marginBottom: '20px', color: '#2d3e3a' }}>
+              At Green Patrol, we understand that security isn't just about alarms and locks —
+              it's about peace of mind. My team and I have one mission: making you feel safe,
+              whether at your home, office, or special event.
             </p>
-
-            <p style={{ lineHeight: '1.6', marginBottom: '20px', color: '#444' }}>
-              With a team of highly trained and dedicated security
-              professionals, we pride ourselves on providing responsive,
-              reliable, and results-driven services. Our goal is to give you
-              peace of mind, knowing that your security is in good hands.
+            <p style={{ lineHeight: '1.6', marginBottom: '20px', color: '#2d3e3a' }}>
+              Every guard is trained with empathy, professionalism, and crisis management.
+              We invest in ongoing education because your safety is non-negotiable.
             </p>
-
-            <p style={{ lineHeight: '1.6', marginBottom: '20px', color: '#444' }}>
-              We value integrity, professionalism, and excellence in
-              everything we do. Our commitment to these core values has
-              earned us a reputation as a trusted and respected security
-              provider.
-            </p>
-
-            <strong style={{ color: green1 }}>
-              — MUTAKAYA.S<br />
-              <span style={{ fontWeight: '400', color: '#666' }}>
-                Operations Manager
-              </span>
-            </strong>
-          </div>
+            <div style={{ borderLeft: `4px solid ${green1}`, paddingLeft: '1.25rem', marginTop: '1.5rem' }}>
+              <strong style={{ color: green1, fontSize: '1.1rem' }}>Mutakaya S.</strong><br />
+              <span style={{ color: '#6b7280' }}>Operations Manager, GreenPatrol</span>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section style={{
         padding: 'clamp(60px, 8vw, 100px) clamp(20px, 5vw, 50px)',
-        background: `linear-gradient(135deg, ${green1}, #0a251a)`,
+        background: `linear-gradient(115deg, #0a2b1d, #123f2c)`,
         color: 'white',
         textAlign: 'center'
       }}>
@@ -438,37 +519,52 @@ export default function Home() {
             fontWeight: '700',
             marginBottom: 'clamp(20px, 3vw, 30px)'
           }}>
-            READY TO BE <span style={{ color: green2 }}>PROTECTED?</span>
+            Get a <span style={{ color: green2 }}>Free Security Review</span>
           </h2>
           <p style={{
             fontSize: 'clamp(16px, 2vw, 18px)',
             opacity: 0.9,
             marginBottom: 'clamp(30px, 4vw, 40px)',
-            lineHeight: '1.8'
+            lineHeight: '1.6'
           }}>
-            Get a free security assessment and consultation today.
-            Our team is standing by 24/7.
+            No obligation, just expert advice. We'll analyze your current setup and recommend improvements. 24/7 support guaranteed.
           </p>
-          <Link href="/contact">
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                style={{
+                  background: green2,
+                  color: green1,
+                  border: 'none',
+                  padding: 'clamp(15px, 2vw, 18px) clamp(40px, 5vw, 50px)',
+                  fontSize: 'clamp(16px, 2vw, 18px)',
+                  fontWeight: '700',
+                  borderRadius: '60px',
+                  cursor: 'pointer'
+                }}
+              >
+                Request Consultation →
+              </motion.button>
+            </Link>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               style={{
-                background: green2,
-                color: green1,
-                border: 'none',
+                background: 'transparent',
+                border: `1.5px solid ${green2}`,
+                color: 'white',
                 padding: 'clamp(15px, 2vw, 18px) clamp(40px, 5vw, 50px)',
                 fontSize: 'clamp(16px, 2vw, 18px)',
                 fontWeight: '700',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                width: 'auto',
-                maxWidth: '300px'
+                borderRadius: '60px',
+                cursor: 'pointer'
               }}
             >
-              CONTACT US
+              Call Now: +263 77 608 9167
             </motion.button>
-          </Link>
+          </div>
         </motion.div>
       </section>
 
