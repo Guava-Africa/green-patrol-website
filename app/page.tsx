@@ -465,8 +465,8 @@ export default function Home() {
             }}
           >
             <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>👤</div>
-            <div style={{ fontWeight: '700', fontSize: '1.3rem' }}>Mutakaya S.</div>
-            <div style={{ fontSize: '0.8rem', opacity: 0.8, marginBottom: '1rem' }}>Operations Director</div>
+            <div style={{ fontWeight: '700', fontSize: '1.3rem' }}>Issac Zhou</div>
+            <div style={{ fontSize: '0.8rem', opacity: 0.8, marginBottom: '1rem' }}>General Manager</div>
             <hr style={{ width: '50px', margin: '1rem auto', borderColor: green2 }} />
             <div style={{ fontSize: '0.9rem' }}>"We don't just watch over your property — we become your trusted partner in safety."</div>
           </motion.div>
@@ -482,10 +482,10 @@ export default function Home() {
               marginBottom: '20px',
               color: green1
             }}>
-              A Word From Our Manager
+              A Word From Our General Manager
             </h2>
             <p style={{ lineHeight: '1.6', marginBottom: '20px', color: '#2d3e3a' }}>
-              At Green Patrol, we understand that security isn't just about alarms and locks —
+              At GreenPatrol, we understand that security isn't just about alarms and locks —
               it's about peace of mind. My team and I have one mission: making you feel safe,
               whether at your home, office, or special event.
             </p>
@@ -494,8 +494,8 @@ export default function Home() {
               We invest in ongoing education because your safety is non-negotiable.
             </p>
             <div style={{ borderLeft: `4px solid ${green1}`, paddingLeft: '1.25rem', marginTop: '1.5rem' }}>
-              <strong style={{ color: green1, fontSize: '1.1rem' }}>Mutakaya S.</strong><br />
-              <span style={{ color: '#6b7280' }}>Operations Manager, GreenPatrol</span>
+              <strong style={{ color: green1, fontSize: '1.1rem' }}>Issac Zhou</strong><br />
+              <span style={{ color: '#6b7280' }}>General Manager, GreenPatrol</span>
             </div>
           </motion.div>
         </div>
@@ -504,7 +504,7 @@ export default function Home() {
       {/* CTA Section */}
       <section style={{
         padding: 'clamp(60px, 8vw, 100px) clamp(20px, 5vw, 50px)',
-        background: `linear-gradient(115deg, #0a2b1d, #123f2c)`,
+        background: `linear-gradient(115deg, #092b1d, #123f2c)`,
         color: 'white',
         textAlign: 'center'
       }}>
@@ -527,7 +527,7 @@ export default function Home() {
             marginBottom: 'clamp(30px, 4vw, 40px)',
             lineHeight: '1.6'
           }}>
-            No obligation, just expert advice. We'll analyze your current setup and recommend improvements. 24/7 support guaranteed.
+            No obligation, just expert advice. FWe'll analyze your current setup and recommend improvements. 24/7 support guaranteed.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/contact">

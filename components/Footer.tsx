@@ -49,7 +49,7 @@ export default function Footer() {
                     <Link href="/">
                         <Image
                             src={Logo}
-                            alt='Green Patrol Logo'
+                            alt='GreenPatrol Logo'
                             height={isMobile ? 50 : 60}
                             style={{
                                 margin: isMobile ? '0 auto' : '0',
@@ -148,7 +148,7 @@ export default function Footer() {
                             { name: 'Services', path: '/services' },
                             { name: 'About Us', path: '/about' },
                             { name: 'Contact', path: '/contact' },
-                            { name: 'Rate Card', path: '/rate-card' },
+                            // { name: 'Rate Card', path: '/rate-card' },
                             // { name: 'Join Us', path: '/join' }
                         ].map((link, i) => (
                             <Link key={i} href={link.path} style={{

@@ -81,7 +81,7 @@ export default function Navbar() {
                 <Link href="/">
                     <Image
                         src={Logo}
-                        alt='Green Patrol Logo'
+                        alt='GreenPatrol Logo'
                         height={isMobile ? (scrolled ? 40 : 50) : (scrolled ? 60 : 80)}
                         style={{
                             height: 'auto',
@@ -118,14 +118,14 @@ export default function Navbar() {
                         }}>
                             Contact Us
                         </Link>
-                        <Link href="/rate-card" style={{
+                        {/* <Link href="/rate-card" style={{
                             color: isActive('/rate-card') ? green2 : 'white',
                             textDecoration: 'none',
                             fontWeight: isActive('/rate-card') ? '600' : '400',
                             fontSize: '16px'
                         }}>
                             Rate Card
-                        </Link>
+                        </Link> */}
                     </div>
                 )}
 
@@ -257,7 +257,7 @@ export default function Navbar() {
                         }}>
                             Contact Us
                         </Link>
-                        <Link href="/rate-card" onClick={() => setMobileMenuOpen(false)} style={{
+                        {/* <Link href="/rate-card" onClick={() => setMobileMenuOpen(false)} style={{
                             color: isActive('/rate-card') ? green2 : green1,
                             textDecoration: 'none',
                             fontWeight: isActive('/rate-card') ? '600' : '400',
@@ -267,7 +267,7 @@ export default function Navbar() {
                             padding: '10px 0'
                         }}>
                             Rate Card
-                        </Link>
+                        </Link> */}
                     </div>
 
                     {/* Mobile Menu Footer */}

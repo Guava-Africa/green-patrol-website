@@ -46,7 +46,7 @@ export default function AboutPage() {
                         marginBottom: '20px',
                         lineHeight: '1.2'
                     }}>
-                        ABOUT <span style={{ color: green2 }}>GREEN PATROL</span>
+                        ABOUT <span style={{ color: green2 }}>GREENPATROL</span>
                     </h1>
                     <p style={{
                         fontSize: isMobile ? '16px' : '18px',
@@ -86,7 +86,7 @@ export default function AboutPage() {
                             fontSize: isMobile ? '15px' : '16px',
                             padding: isMobile ? '0 10px' : '0'
                         }}>
-                            Green Patrol is a dynamic, customer-responsive security company dedicated to
+                            GreenPatrol is a dynamic, customer-responsive security company dedicated to
                             excellence in every aspect of our service. From meticulous recruitment and
                             continuous training to strategic deployment and constant client liaison, we
                             ensure your satisfaction. Our experienced management team brings vast expertise
@@ -209,7 +209,7 @@ export default function AboutPage() {
                         {[
                             {
                                 title: 'OUR MISSION',
-                                content: `Green Patrol is committed to providing
+                                content: `GreenPatrol is committed to providing
                                 high-quality security services that
                                 protect people, property, and the
                                 environment. We strive to be a leader in
