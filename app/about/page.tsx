@@ -86,13 +86,7 @@ export default function AboutPage() {
                             fontSize: isMobile ? '15px' : '16px',
                             padding: isMobile ? '0 10px' : '0'
                         }}>
-                            GreenPatrol is a dynamic, customer-responsive security company dedicated to
-                            excellence in every aspect of our service. From meticulous recruitment and
-                            continuous training to strategic deployment and constant client liaison, we
-                            ensure your satisfaction. Our experienced management team brings vast expertise
-                            in security training, surveys, and consultancy, delivering contemporary solutions
-                            that add genuine value to your business. We believe security is a collaborative
-                            effort—partner with us, and together we'll achieve exceptional results.
+                            GreenPatrol is a dynamic, customer-focused security company providing dependable protection solutions for commercial, institutional, agricultural, healthcare, and high-profile environments. Built on discipline, integrity, and operational readiness, we deliver excellence through meticulous recruitment, continuous training, strategic deployment, and proactive client engagement. Backed by an experienced management team with expertise in security training, surveys, and consultancy, we provide modern, effective solutions tailored to add real value to your business. At GreenPatrol, we believe security is a partnership, working closely with our clients to achieve exceptional results.
                         </p>
                     </motion.div>
                 </div>
@@ -127,26 +121,31 @@ export default function AboutPage() {
 
                         <div style={{
                             display: 'grid',
-                            gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+                            gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
                             gap: isMobile ? '15px' : '25px'
                         }}>
                             {[
                                 {
                                     title: 'Integrity',
-                                    desc: 'We conduct our business with honesty and transparency, building trust with every client.'
+                                    desc: `Its recruitment and operational
+                                            controls are designed to strengthen
+                                            trust and reduce avoidable client
+                                            risk.`
                                 },
                                 {
                                     title: 'Professionalism',
-                                    desc: 'Our guards maintain the highest standards of conduct and appearance at all times.'
+                                    desc: `The company is committed to
+                                            disciplined presentation, proper
+                                            supervision 
+                                            and 
+                                            service delivery.`
                                 },
                                 {
-                                    title: 'Excellence',
-                                    desc: 'We strive for continuous improvement and superior service delivery in everything we do.'
+                                    title: 'Responsiveness',
+                                    desc: `It prioritises communication, swift
+                                            escalation and practical support
+                                            when it matters most.`
                                 },
-                                {
-                                    title: 'Innovation',
-                                    desc: 'Embracing modern technology and methods to provide cutting-edge security solutions.'
-                                }
                             ].map((value, index) => (
                                 <motion.div
                                     key={index}
@@ -209,22 +208,18 @@ export default function AboutPage() {
                         {[
                             {
                                 title: 'OUR MISSION',
-                                content: `GreenPatrol is committed to providing
-                                high-quality security services that
-                                protect people, property, and the
-                                environment. We strive to be a leader in
-                                the security industry, known for our
-                                professionalism, integrity, and
-                                commitment to excellence`,
+                                content: `To provide high-quality security services that protect
+                                            people, property and the environment while being
+                                            recognised for professionalism, integrity and service
+                                            excellence`,
                                 icon: '🎯'
                             },
                             {
                                 title: 'OUR VISION',
-                                content: `Our vision is to be the go-to security
-                                provider for businesses, organizations,
-                                and individuals seeking reliable,
-                                effective, and environmentally
-                                responsible security solutions.`,
+                                content: `To be the preferred security services provider for
+                                        businesses, organisations and individuals seeking
+                                        reliable, effective and environmentally responsible
+                                        security solutions.`,
                                 icon: '👁️'
                             }
                         ].map((item, index) => (

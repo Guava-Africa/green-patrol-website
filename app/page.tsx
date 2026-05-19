@@ -295,13 +295,17 @@ export default function Home() {
             gap: 'clamp(20px, 3vw, 30px)'
           }}>
             {[
-              { title: 'Static Guards', desc: 'Visible, uniformed officers at your premises. Deterrence & immediate response.', icon: '🛡️', tag: '24/7 presence' },
-              { title: 'Armed Response', desc: 'Licensed tactical units for high-risk assets, banks, and valuable shipments.', icon: '⚔️', tag: 'Rapid deployment' },
-              { title: 'Undercover Operatives', desc: 'Plain-clothes security to blend in & detect threats discreetly.', icon: '🕵️', tag: 'Covert surveillance' },
-              { title: 'VIP Protection', desc: 'Executive protection specialists for celebrities, executives, and diplomats.', icon: '👤', tag: 'Risk assessment' },
-              { title: 'Canine Security', desc: 'Highly trained detection dogs for patrol, explosives & narcotics detection.', icon: '🐕', tag: 'Enhanced deterrence' },
-              { title: 'Event Coverage', desc: 'Full-scale planning, access control, crowd management for safe events.', icon: '📋', tag: 'Crowd safety' }
-            ].map((service, index) => (
+             { title: 'Static Guards', desc: 'Visible, uniformed officers at your premises. Deterrence & immediate response.', icon: '🛡️', tag: '24/7 presence' },
+
+{ title: 'Armed Response', desc: 'Licensed tactical units for high-risk assets, banks, and valuable shipments.', icon: '⚔️', tag: 'Rapid deployment' },
+
+{ title: 'Investigations', desc: 'Professional investigative services including surveillance, background checks, and fraud investigations.', icon: '🔍', tag: 'Discreet operations' },
+
+{ title: 'VIP Protection', desc: 'Executive protection specialists for celebrities, executives, and diplomats.', icon: '👤', tag: 'Risk assessment' },
+
+{ title: 'Canine Security', desc: 'Highly trained detection dogs for patrol, explosives & narcotics detection.', icon: '🐕', tag: 'Enhanced deterrence' },
+
+{ title: 'CCTV Monitoring', desc: '24/7 remote surveillance monitoring with instant alerts and rapid response coordination.', icon: '📹', tag: 'Remote monitoring' }].map((service, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -340,7 +344,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Modern Security Section - improved readability */}
+      {/* Modern Security Section - REDESIGNED WITH 2 IMAGES */}
       <section style={{
         padding: 'clamp(60px, 8vw, 100px) clamp(20px, 5vw, 50px)',
         backgroundColor: '#f8fbf9'
@@ -350,9 +354,10 @@ export default function Home() {
           margin: '0 auto',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: 'clamp(30px, 5vw, 60px)',
+          gap: 'clamp(40px, 5vw, 70px)',
           alignItems: 'center'
         }}>
+          {/* Left Content - Text */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -402,41 +407,197 @@ export default function Home() {
             </ul>
           </motion.div>
 
+          {/* Right Side - 2 Images stacked vertically */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '20px'
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '24px'
             }}
           >
-            {[
-              { emoji: '🔒', label: 'Smart Tech', desc: 'AI monitoring' },
-              { emoji: '🚨', label: 'Instant Alert', desc: 'real-time dispatch' },
-              { emoji: '📋', label: 'Certified Guards', desc: 'state licensed' },
-              { emoji: '📡', label: 'Remote CCTV', desc: 'central command' }
-            ].map((item, i) => (
-              <div key={i} style={{
+            {/* Image 1 */}
+            <div style={{
+              borderRadius: '28px',
+              overflow: 'hidden',
+              boxShadow: '0 15px 30px -12px rgba(0,0,0,0.15)',
+              border: `1px solid ${green2}60`,
+              background: '#ffffff'
+            }}>
+              <div style={{
                 background: '#e9f3ef',
-                borderRadius: '28px',
-                padding: '1.5rem 1rem',
-                textAlign: 'center',
-                border: `1px solid #d0e2d8`
+                padding: '1rem',
+                textAlign: 'center'
               }}>
-                <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{item.emoji}</div>
-                <div style={{ fontWeight: '700', marginBottom: '0.25rem', color: green1 }}>{item.label}</div>
-                {/* <div style={{ fontSize: '0.75rem', color: '#2d5a46' }}>{item.desc}</div> */}
+                  <img src={'/20260507_101000.webp'} alt="Image 1" className='rounded-2xl' />
               </div>
-            ))}
+            </div>
+
+            {/* Image 2 */}
+            {/* <div style={{
+              borderRadius: '28px',
+              overflow: 'hidden',
+              boxShadow: '0 15px 30px -12px rgba(0,0,0,0.15)',
+              border: `1px solid ${green2}60`,
+              background: '#ffffff'
+            }}>
+              <div style={{
+                background: '#e9f3ef',
+                padding: '1rem',
+                textAlign: 'center'
+              }}>
+                <div style={{
+                  height: '200px',
+                  background: `linear-gradient(135deg, ${green2}20, ${green1}20)`,
+                  borderRadius: '16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: green1,
+                  fontSize: '48px'
+                }}>
+                  <img src={'/20260507_101000.webp'} alt="Image 2" />
+                </div>
+              </div>
+            </div> */}
           </motion.div>
         </div>
       </section>
 
-      {/* Manager's Message - kept but cleaned */}
+      {/* Operational Standards Section - NEW */}
       <section style={{
+        padding: 'clamp(60px, 8vw, 100px) clamp(20px, 5vw, 50px)',
+        backgroundColor: 'white'
+      }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            style={{ textAlign: 'center', marginBottom: '60px' }}
+          >
+            <span style={{
+              background: '#eef6f2',
+              color: green1,
+              padding: '0.25rem 1rem',
+              borderRadius: '40px',
+              fontWeight: '600',
+              fontSize: '0.8rem',
+              display: 'inline-block',
+              marginBottom: '1rem'
+            }}>
+              OUR OPERATIONAL EXCELLENCE
+            </span>
+            <h2 style={{
+              fontSize: 'clamp(36px, 5vw, 48px)',
+              fontWeight: '700',
+              color: '#1a1a1a',
+              marginBottom: '20px'
+            }}>
+              How We Deliver <span style={{ color: green1 }}>World-Class Security</span>
+            </h2>
+            <p style={{ fontSize: '18px', color: '#666', maxWidth: '600px', margin: '0 auto' }}>
+              From hiring to incident response — a systematic approach that guarantees your safety
+            </p>
+          </motion.div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+            gap: 'clamp(25px, 3vw, 35px)'
+          }}>
+            {[
+              { 
+                title: 'Recruitment & Vetting', 
+                desc: `All applicants are strictly vetted in coordination with ZR
+Police CID. The company prioritises mature, responsible
+and trustworthy personnel capable of representing Green
+Patrol professionally.`,
+                icon: '🔍',
+                color: '#e8f0fe'
+              },
+              { 
+                title: 'Training & Supervision', 
+                desc: `Continuous training and disciplined supervision support
+strong presentation, site control, reporting quality and
+alignment with client expectations.`,
+                icon: '🎓',
+                color: '#e6f4ea'
+              },
+              { 
+                title: 'Communication & Response', 
+                desc:  `Green Patrol places high value on communication, timely
+operational updates, incident escalation and dependable
+client support.`,
+                icon: '📡',
+                color: '#fef7e0'
+              },
+              { 
+                title: 'Security Risk Support', 
+                desc: `Professional security surveys and risk assessments are
+available to help clients identify vulnerabilities and
+strengthen protection planning.`,
+                icon: '🛡️',
+                color: '#fce8e6'
+              }
+            ].map((standard, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                style={{
+                  backgroundColor: 'white',
+                  borderRadius: '28px',
+                  padding: 'clamp(30px, 4vw, 40px)',
+                  border: `1px solid #e9ecef`,
+                  boxShadow: '0 5px 20px rgba(0,0,0,0.03)',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <div style={{
+                  width: '70px',
+                  height: '70px',
+                  background: standard.color,
+                  borderRadius: '20px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '36px',
+                  marginBottom: '24px'
+                }}>
+                  {standard.icon}
+                </div>
+                <h3 style={{
+                  fontSize: 'clamp(22px, 3vw, 26px)',
+                  fontWeight: '700',
+                  color: green1,
+                  marginBottom: '15px',
+                  lineHeight: '1.3'
+                }}>
+                  {standard.title}
+                </h3>
+                <p style={{
+                  color: '#4a5568',
+                  lineHeight: '1.7',
+                  fontSize: '0.95rem'
+                }}>
+                  {standard.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Manager's Message - COMMENTED OUT AS REQUESTED */}
+      {/* <section style={{
         padding: 'clamp(60px, 8vw, 100px) clamp(15px, 4vw, 20px)',
         backgroundColor: 'white'
       }}>
@@ -499,7 +660,7 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section style={{
@@ -519,7 +680,7 @@ export default function Home() {
             fontWeight: '700',
             marginBottom: 'clamp(20px, 3vw, 30px)'
           }}>
-            Get a <span style={{ color: green2 }}>Free Security Review</span>
+            Get in touch <span style={{ color: green2 }}>with us</span>
           </h2>
           <p style={{
             fontSize: 'clamp(16px, 2vw, 18px)',
@@ -527,7 +688,7 @@ export default function Home() {
             marginBottom: 'clamp(30px, 4vw, 40px)',
             lineHeight: '1.6'
           }}>
-            No obligation, just expert advice. FWe'll analyze your current setup and recommend improvements. 24/7 support guaranteed.
+            No obligation, just expert advice. We'll analyze your current setup and recommend improvements. 24/7 support guaranteed.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/contact">
@@ -562,7 +723,7 @@ export default function Home() {
                 cursor: 'pointer'
               }}
             >
-              Call Now: +263 77 608 9167
+              Call Now: +263 242 257 156/7
             </motion.button>
           </div>
         </motion.div>

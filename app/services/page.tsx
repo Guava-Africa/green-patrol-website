@@ -22,10 +22,10 @@ export default function ServicesPage() {
             features: ['Firearms Trained', 'Tactical Response', 'Risk Assessment', 'Emergency Protocols']
         },
         {
-            title: 'Undercover Guards',
-            desc: 'Discreet plain-clothes security operatives for subtle protection. Blend in seamlessly while monitoring for suspicious activity.',
-            icon: '🕵️',
-            features: ['Covert Surveillance', 'Loss Prevention', 'Investigation', 'Plain Clothes']
+            title: 'Canine Security',
+            desc: 'Trained K-9 units for enhanced detection and patrol capabilities. Dogs trained in explosive detection, tracking, and apprehension.',
+            icon: '🐕',
+            features: ['Explosive Detection', 'Patrol K9', 'Search Operations', 'Handler Teams']
         },
         {
             title: 'VIP Protection',
@@ -33,36 +33,18 @@ export default function ServicesPage() {
             icon: '👤',
             features: ['Close Protection', 'Route Security', 'Event Security', 'Advance Work']
         },
-        {
-            title: 'Canine Security',
-            desc: 'Trained K-9 units for enhanced detection and patrol capabilities. Dogs trained in explosive detection, tracking, and apprehension.',
-            icon: '🐕',
-            features: ['Explosive Detection', 'Patrol K9', 'Search Operations', 'Handler Teams']
-        },
-        {
-            title: 'Event Coverage',
-            desc: 'Comprehensive security planning and execution for events of any size. From concerts to corporate gatherings, we ensure safety.',
-            icon: '📋',
-            features: ['Crowd Control', 'Access Management', 'Emergency Planning', 'VIP Areas']
-        },
+         {
+        title: 'Investigations',
+        desc: 'Professional investigative services designed to uncover facts, gather evidence, and support informed decision-making for businesses and individuals.',
+        icon: '🔍',
+        features: ['Private Investigations', 'Surveillance Operations', 'Background Checks', 'Fraud Investigations']
+    },
         {
             title: 'CCTV Monitoring',
-            desc: '24/7 remote monitoring of your premises with instant alert response. State-of-the-art surveillance technology.',
+            desc: 'Monitoring support that improves visibility, escalation and response coordination.',
             icon: '📹',
             features: ['Remote Monitoring', 'Motion Detection', 'Cloud Storage', 'Mobile Access']
         },
-        {
-            title: 'Security Consulting',
-            desc: 'Expert security assessments and recommendations to improve your overall security posture.',
-            icon: '💼',
-            features: ['Risk Analysis', 'Security Audits', 'Policy Development', 'Training Programs']
-        },
-        {
-            title: 'Rapid Response',
-            desc: 'Quick deployment teams ready to respond to any security breach or emergency situation.',
-            icon: '🚨',
-            features: ['24/7 Dispatch', 'GPS Tracked', 'Intervention Teams', 'Police Liaison']
-        }
     ]
 
     // Responsive styles object
@@ -213,7 +195,7 @@ export default function ServicesPage() {
                             <h3 style={styles.serviceTitle}>{service.title}</h3>
                             <p style={styles.serviceDesc}>{service.desc}</p>
 
-                            <h4 style={styles.featureTitle}>KEY FEATURES:</h4>
+                            {/* <h4 style={styles.featureTitle}>KEY FEATURES:</h4>
                             <ul style={styles.featureList}>
                                 {service.features.map((feature, i) => (
                                     <li key={i} style={styles.featureItem}>
@@ -221,7 +203,7 @@ export default function ServicesPage() {
                                         <span>{feature}</span>
                                     </li>
                                 ))}
-                            </ul>
+                            </ul> */}
                         </motion.div>
                     ))}
                 </div>

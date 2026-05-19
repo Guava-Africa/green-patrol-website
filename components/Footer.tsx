@@ -117,9 +117,7 @@ export default function Footer() {
                             <span style={{ color: green2, fontSize: '20px' }}>📞</span>
                             <div>
                                 <p style={{ color: '#aaa', margin: 0, fontSize: isMobile ? '14px' : '16px' }}>Phone numbers</p>
-                                <p style={{ color: 'white', margin: '5px 0 0 0', fontSize: isMobile ? '14px' : '16px' }}>+263 77 608 9167</p>
-                                <p style={{ color: 'white', margin: '5px 0 0 0', fontSize: isMobile ? '14px' : '16px' }}>+263 77 234 6409</p>
-                                <p style={{ color: 'white', margin: '5px 0 0 0', fontSize: isMobile ? '14px' : '16px' }}>+263 78 786 2157</p>
+                                <p style={{ color: 'white', margin: '5px 0 0 0', fontSize: isMobile ? '14px' : '16px' }}>+263 242 257 156/7</p>
                             </div>
                         </div>
                     </div>
@@ -182,7 +180,7 @@ export default function Footer() {
                 textAlign: isMobile ? 'center' : 'left',
                 gap: isMobile ? '10px' : isTablet ? '15px' : '0'
             }}>
-                <span>© {currentYear} GreenPatrol Security. All rights reserved.</span>
+                <span>© {currentYear} GreenPatrol Security. All rights reserved. <Link href="https://africapaciti.com" target="_blank" className="hover:text-blue-400">An Africapaciti Company</Link></span>
                 <span style={{
                     display: 'flex',
                     flexDirection: isMobile ? 'column' : 'row',

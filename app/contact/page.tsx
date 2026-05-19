@@ -169,20 +169,7 @@ export default function ContactPage() {
                                         marginBottom: '5px',
                                         fontSize: isMobile ? '15px' : '16px'
                                     }}>
-                                        +263 776 089 167
-                                    </p>
-                                    <p style={{
-                                        color: '#666',
-                                        marginBottom: '5px',
-                                        fontSize: isMobile ? '15px' : '16px'
-                                    }}>
-                                        +263 772 346 409
-                                    </p>
-                                    <p style={{
-                                        color: '#666',
-                                        fontSize: isMobile ? '15px' : '16px'
-                                    }}>
-                                        +263 787 862 157
+                                        +263 242 257 156/7
                                     </p>
                                 </div>
                             </div>
@@ -216,22 +203,7 @@ export default function ContactPage() {
                                     fontSize: isMobile ? '15px' : '16px'
                                 }}>
                                     <strong style={{ color: green1 }}>General Inquiries:</strong><br />
-                                    info@greenpatrol.co.zw
-                                </p>
-                                <p style={{
-                                    color: '#666',
-                                    marginBottom: '15px',
-                                    fontSize: isMobile ? '15px' : '16px'
-                                }}>
-                                    <strong style={{ color: green1 }}>Sales:</strong><br />
-                                    sales@greenpatrol.co.zw
-                                </p>
-                                <p style={{
-                                    color: '#666',
-                                    fontSize: isMobile ? '15px' : '16px'
-                                }}>
-                                    <strong style={{ color: green1 }}>Support:</strong><br />
-                                    support@greenpatrol.co.zw
+                                    info@greenpatrol.africa
                                 </p>
                             </div>
 
