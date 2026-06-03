@@ -227,7 +227,7 @@ export default function Home() {
                 position: 'relative'
               }}
             >
-              <div style={{
+              {/* <div style={{
                 borderRadius: '32px',
                 overflow: 'hidden',
                 boxShadow: '0 30px 40px -20px rgba(0,0,0,0.5)',
@@ -245,7 +245,7 @@ export default function Home() {
                   }}
                   priority
                 />
-              </div>
+              </div> */}
             </motion.div>
           </div>
         </div>
