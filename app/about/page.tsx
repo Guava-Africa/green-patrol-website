@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import Image from 'next/image'
 
 export default function AboutPage() {
     const [isMobile, setIsMobile] = useState(false)
@@ -17,6 +18,41 @@ export default function AboutPage() {
         window.addEventListener('resize', checkMobile)
         return () => window.removeEventListener('resize', checkMobile)
     }, [])
+
+    // Leadership team data
+    const leadershipTeam = {
+        chairman: {
+            name: 'Eng. Tafadzwa Muguti',
+            title: 'Group Chairman',
+            quote: '"Security is not just about protecting assets — it\'s about protecting dreams, families, and futures. At GreenPatrol, we build trust through action, not promises."',
+            image: '/chairman.jpg'
+        },
+        generalManager: {
+            name: 'Issac Zhou',
+            title: 'General Manager',
+            image: '/gm.jpg'
+        },
+        managers: [
+            {
+                name: 'Sarah Moyo',
+                title: 'Operations Manager',
+                bio: 'Expert in security logistics and tactical deployment with over 10 years of field experience.',
+                image: '/manager1.jpg'
+            },
+            {
+                name: 'David Ncube',
+                title: 'Training & Compliance Manager',
+                bio: 'Certified security trainer with international certification in risk management.',
+                image: '/manager2.jpg'
+            },
+            {
+                name: 'Patricia Zhou',
+                title: 'Client Relations Manager',
+                bio: 'Ensuring seamless communication and client satisfaction with a customer-first approach.',
+                image: '/manager3.jpg'
+            }
+        ]
+    }
 
     return (
         <div style={{
@@ -60,7 +96,322 @@ export default function AboutPage() {
                 </motion.div>
             </section>
 
-            {/* Company Overview */}
+            {/* Message from Chairman - LARGEST IMAGE with rounded-lg */}
+            <section style={{
+                padding: isMobile ? '60px 20px' : '80px 50px',
+                backgroundColor: '#f0f7f3'
+            }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{
+                            display: 'flex',
+                            flexDirection: isMobile ? 'column' : 'row',
+                            gap: isMobile ? '30px' : '50px',
+                            alignItems: 'center',
+                            backgroundColor: 'white',
+                            borderRadius: '24px',
+                            padding: isMobile ? '30px 20px' : '50px',
+                            boxShadow: '0 10px 40px rgba(0,0,0,0.08)'
+                        }}
+                    >
+                        {/* Chairman Image - Largest with rounded-lg */}
+                        <div style={{
+                            flex: '0 0 auto',
+                            textAlign: 'center'
+                        }}>
+                            <div style={{
+                                width: isMobile ? '200px' : '300px',
+                                height: isMobile ? '200px' : '300px',
+                                borderRadius: '16px',
+                                overflow: 'hidden',
+                                backgroundColor: green2,
+                                border: `4px solid ${green1}`,
+                                margin: '0 auto',
+                                position: 'relative'
+                            }}>
+                                {/* Image placeholder - uncomment when image is available */}
+                                {/* <Image
+                                    src={leadershipTeam.chairman.image}
+                                    alt={leadershipTeam.chairman.name}
+                                    fill
+                                    style={{ objectFit: 'cover' }}
+                                /> */}
+                                <div style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    background: `linear-gradient(135deg, ${green1}, ${green2})`,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: isMobile ? '70px' : '110px',
+                                    color: 'white'
+                                }}>
+                                    👤
+                                </div>
+                            </div>
+                            <h3 style={{
+                                fontSize: isMobile ? '22px' : '28px',
+                                color: green1,
+                                marginTop: '20px',
+                                marginBottom: '5px'
+                            }}>
+                                {leadershipTeam.chairman.name}
+                            </h3>
+                            <p style={{
+                                fontSize: isMobile ? '14px' : '16px',
+                                color: '#666',
+                                fontWeight: '600'
+                            }}>
+                                {leadershipTeam.chairman.title}
+                            </p>
+                        </div>
+
+                        {/* Chairman Message */}
+                        <div style={{
+                            flex: '1',
+                            textAlign: isMobile ? 'center' : 'left'
+                        }}>
+                            <h2 style={{
+                                fontSize: isMobile ? '24px' : '32px',
+                                color: green1,
+                                marginBottom: '20px',
+                                borderLeft: isMobile ? 'none' : `4px solid ${green1}`,
+                                paddingLeft: isMobile ? '0' : '20px'
+                            }}>
+                                Message from the Chairman
+                            </h2>
+                            <p style={{
+                                fontSize: isMobile ? '16px' : '18px',
+                                lineHeight: '1.8',
+                                color: '#444',
+                                fontStyle: 'italic',
+                                marginBottom: '20px'
+                            }}>
+                                {leadershipTeam.chairman.quote}
+                            </p>
+                            <div style={{
+                                borderTop: `1px solid ${green2}`,
+                                paddingTop: '20px',
+                                marginTop: '10px'
+                            }}>
+                                <p style={{
+                                    fontSize: isMobile ? '14px' : '15px',
+                                    color: '#666',
+                                    lineHeight: '1.6'
+                                }}>
+                                    Under my leadership, GreenPatrol has grown from a vision to one of the most trusted security providers in the region. 
+                                    Our commitment to integrity, excellence, and innovation remains unwavering as we continue to protect what matters most to our clients.
+                                </p>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* General Manager Section - Image Only */}
+            <section style={{
+                padding: isMobile ? '60px 20px' : '80px 50px'
+            }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{
+                            textAlign: 'center',
+                            backgroundColor: 'white',
+                            borderRadius: '20px',
+                            padding: isMobile ? '40px 20px' : '50px',
+                            boxShadow: '0 5px 25px rgba(0,0,0,0.05)',
+                            border: `1px solid ${green2}`
+                        }}
+                    >
+                        <h2 style={{
+                            fontSize: isMobile ? '24px' : '32px',
+                            color: green1,
+                            marginBottom: '30px'
+                        }}>
+                            Meet Our General Manager
+                        </h2>
+                        
+                        {/* GM Image */}
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}>
+                            <div style={{
+                                width: isMobile ? '180px' : '220px',
+                                height: isMobile ? '180px' : '220px',
+                                borderRadius: '50%',
+                                overflow: 'hidden',
+                                backgroundColor: green2,
+                                border: `3px solid ${green1}`,
+                                margin: '0 auto',
+                                position: 'relative'
+                            }}>
+                                {/* Image placeholder - uncomment when image is available */}
+                                {/* <Image
+                                    src={leadershipTeam.generalManager.image}
+                                    alt={leadershipTeam.generalManager.name}
+                                    fill
+                                    style={{ objectFit: 'cover' }}
+                                /> */}
+                                <div style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    background: `linear-gradient(135deg, ${green2}, ${green1}20)`,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: isMobile ? '60px' : '80px',
+                                    color: green1
+                                }}>
+                                    👨‍💼
+                                </div>
+                            </div>
+                            <h3 style={{
+                                fontSize: isMobile ? '22px' : '26px',
+                                color: green1,
+                                marginTop: '20px',
+                                marginBottom: '5px'
+                            }}>
+                                {leadershipTeam.generalManager.name}
+                            </h3>
+                            <p style={{
+                                fontSize: isMobile ? '14px' : '16px',
+                                color: '#666',
+                                fontWeight: '600'
+                            }}>
+                                {leadershipTeam.generalManager.title}
+                            </p>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Managers Section - Properly Aligned */}
+            <section style={{
+                padding: isMobile ? '40px 20px 60px' : '60px 50px 80px',
+                backgroundColor: '#f8fbf9'
+            }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{ textAlign: 'center', marginBottom: isMobile ? '40px' : '60px' }}
+                    >
+                        <h2 style={{
+                            fontSize: isMobile ? '28px' : '36px',
+                            color: green1,
+                            marginBottom: '15px'
+                        }}>
+                            Our Leadership Team
+                        </h2>
+                        <p style={{
+                            fontSize: isMobile ? '15px' : '16px',
+                            color: '#666',
+                            maxWidth: '600px',
+                            margin: '0 auto'
+                        }}>
+                            Dedicated professionals committed to your safety
+                        </p>
+                    </motion.div>
+
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+                        gap: isMobile ? '30px' : '30px',
+                        alignItems: 'stretch'
+                    }}>
+                        {leadershipTeam.managers.map((manager, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                                viewport={{ once: true }}
+                                style={{
+                                    backgroundColor: 'white',
+                                    borderRadius: '20px',
+                                    padding: isMobile ? '30px 20px' : '35px 25px',
+                                    textAlign: 'center',
+                                    boxShadow: '0 5px 20px rgba(0,0,0,0.05)',
+                                    border: `1px solid ${green2}30`,
+                                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                    height: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center'
+                                }}
+                                whileHover={{ y: -5, boxShadow: '0 15px 35px rgba(0,0,0,0.1)' }}
+                            >
+                                <div style={{
+                                    width: isMobile ? '130px' : '160px',
+                                    height: isMobile ? '130px' : '160px',
+                                    borderRadius: '50%',
+                                    overflow: 'hidden',
+                                    backgroundColor: green2,
+                                    margin: '0 auto 20px',
+                                    border: `3px solid ${green1}`,
+                                    position: 'relative'
+                                }}>
+                                    {/* Image placeholder - uncomment when image is available */}
+                                    {/* <Image
+                                        src={manager.image}
+                                        alt={manager.name}
+                                        fill
+                                        style={{ objectFit: 'cover' }}
+                                    /> */}
+                                    <div style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        background: `linear-gradient(135deg, ${green2}, ${green1}10)`,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        fontSize: isMobile ? '50px' : '65px',
+                                        color: green1
+                                    }}>
+                                        {index === 0 ? '👩‍💼' : index === 1 ? '👨‍🏫' : '👩‍💻'}
+                                    </div>
+                                </div>
+                                <h3 style={{
+                                    fontSize: isMobile ? '18px' : '20px',
+                                    color: green1,
+                                    marginBottom: '8px',
+                                    fontWeight: '700'
+                                }}>
+                                    {manager.name}
+                                </h3>
+                                <p style={{
+                                    fontSize: isMobile ? '13px' : '14px',
+                                    color: green1,
+                                    fontWeight: '600',
+                                    marginBottom: '15px'
+                                }}>
+                                    {manager.title}
+                                </p>
+                                <p style={{
+                                    fontSize: isMobile ? '13px' : '14px',
+                                    color: '#666',
+                                    lineHeight: '1.6',
+                                    margin: 0
+                                }}>
+                                    {manager.bio}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Company Overview (Who We Are) */}
             <section style={{
                 padding: isMobile ? '60px 20px 30px' : '80px 50px 40px'
             }}>
